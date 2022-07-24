@@ -6,9 +6,11 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Usuario;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface Usuarios extends PagingAndSortingRepository<Usuario, Long>{
+@Repository
+public interface Usuarios extends JpaRepository<Usuario, Long> {
     
 }
  
