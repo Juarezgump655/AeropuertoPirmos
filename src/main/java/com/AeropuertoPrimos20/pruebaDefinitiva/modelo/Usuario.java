@@ -20,6 +20,10 @@ public class Usuario {
     @Column(nullable =false)
     private String direccion;
 
+    //Se genera un constructor vacio por nomenclantura
+    public Usuario() {
+    }
+
     public Usuario(int numeroPasaporte, String nombreCliente, String fecha, String nacionalidad, String correo, int codigopais, int numeroTelefono, int numeroTelefonoEm, String direccion) {
         this.numeroPasaporte = numeroPasaporte;
         this.nombreCliente = nombreCliente;
