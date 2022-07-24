@@ -9,10 +9,15 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable =false)
     private int numeroPasaporte;
+    @Column(nullable =false)
     private String nombreCliente;
+    @Column(nullable =false)
     private String Fecha, nacionalidad, correo;
+    @Column(nullable =false)
     private int codigopais;
+    @Column(nullable =false)
     private int numeroTelefono, numeroTelefonoEm;
+    @Column(nullable =false)
     private String direccion;
 
     public Usuario(int numeroPasaporte, String nombreCliente, String fecha, String nacionalidad, String correo, int codigopais, int numeroTelefono, int numeroTelefonoEm, String direccion) {
