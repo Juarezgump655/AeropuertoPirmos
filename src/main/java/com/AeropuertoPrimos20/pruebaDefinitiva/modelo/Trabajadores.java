@@ -66,7 +66,7 @@ public class Trabajadores {
     public int getEdad() {
         return edad;
     }
-
+ 
     public void setEdad(int edad) {
         this.edad = edad;
     }

@@ -21,6 +21,7 @@ public class UsuarioControlador {
     private Usuarios repositorio;
 
     //este metodo sirve para listar todos los ususarios
+
     @GetMapping("/Usuarios")
     public List<Usuario> ListarUsuarios(){
     return  repositorio.findAll();
@@ -48,12 +49,12 @@ public class UsuarioControlador {
                  .orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id));
          usuario.setNumeroPasaporte(detallesUsuario.getNumeroPasaporte());
          usuario.setNombreCliente(detallesUsuario.getNombreCliente());
-         usuario.setFecha(detallesUsuario.getFecha());
+         usuario.setFechanacimiento(detallesUsuario.getFechanacimiento());
          usuario.setNacionalidad(detallesUsuario.getNacionalidad());
          usuario.setCorreo(detallesUsuario.getCorreo());
          usuario.setCodigopais(detallesUsuario.getCodigopais());
-         usuario.setNumeroTelefono(detallesUsuario.getNumeroTelefono());
-         usuario.setNumeroTelefonoEm(detallesUsuario.getNumeroTelefonoEm());
+         usuario.setNumerotelefoono(detallesUsuario.getNumerotelefoono());
+         usuario.setNumerotelefoonoem(detallesUsuario.getNumerotelefoonoem());
          usuario.setDireccion(detallesUsuario.getDireccion());
          usuario.setContrasenia(detallesUsuario.getContrasenia());
          Usuario usuarioActualizado = repositorio.save(usuario);

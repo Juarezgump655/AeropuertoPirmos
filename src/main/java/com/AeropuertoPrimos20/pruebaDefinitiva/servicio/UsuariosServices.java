@@ -6,9 +6,10 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Usuario;
+import org.springframework.data.domain.Page;
+
 import java.awt.print.Pageable;
 import java.util.List;
-import org.springframework.data.domain.Page;
 
 public interface UsuariosServices {
 
@@ -20,8 +21,11 @@ public interface UsuariosServices {
 
     //Guardar usuario
     public void save(Usuario usuario);
+
     //buscar el usuario
     public Usuario findOne(Long id);
+
+
      //Eliminar el usuario
     public void delete(Long id);
 }
