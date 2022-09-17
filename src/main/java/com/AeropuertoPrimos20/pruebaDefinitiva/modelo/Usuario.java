@@ -18,10 +18,10 @@ public class Usuario implements Serializable {
     @Column(name= "numeropasaporte",unique = true, nullable = false)
     private Long numeroPasaporte;
 
-    @Column(name= "nombrecliente",unique = true, nullable = false)
+    @Column(name= "nombrecliente", nullable = false)
     private String nombreCliente;
 
-    @Column(name= "apellidocliente",unique = true, nullable = false)
+    @Column(name= "apellidocliente", nullable = false)
     private String apellidocliente;
 
     @Column(name = "fechanacimiento", nullable = false)
@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
     @Temporal(TemporalType.DATE)
     private Calendar fechanacimiento;
 
-    @Column(name= "nacionalidad\n",unique = true, nullable = false)
+    @Column(name= "nacionalidad", nullable = false)
     private String nacionalidad;
     @Column(name= "correo",unique = true, nullable = false)
     private String correo;
@@ -37,7 +37,7 @@ public class Usuario implements Serializable {
     @Column(name ="codigopais", nullable =false)
     private int codigopais;
 
-    @Column(name= "genero",unique = true, nullable = false)
+    @Column(name= "genero", nullable = false)
     private String genero;
 
     @Column(name ="numerotelefoono", nullable =false)
@@ -49,7 +49,7 @@ public class Usuario implements Serializable {
     @Column(name= "direccion", nullable = false)
     private String direccion;
 
-    @Column(name= "contrasenia",unique = true, nullable = false)
+    @Column(name= "contrasenia", nullable = false)
     private String contrasenia;
 
     @Column(name= "idroles", nullable = false )
@@ -58,7 +58,7 @@ public class Usuario implements Serializable {
     @Column(name= "idestado", nullable = false)
     private Long idestado;
 
-    @Column(name= "idusuariocreacion",unique = true, nullable = false)
+    @Column(name= "idusuariocreacion", nullable = false)
     private Long idusuariocreacion;
 
     @Column(name = "fechacreacion", updatable = false, nullable = false)

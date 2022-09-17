@@ -16,13 +16,13 @@ public class UsuariosInternos implements Serializable {
     @Column(name = "documentoidentificaion", unique = true, nullable = false)
     private long documentoidentificaion;
 
-    @Column(name = "nombres", unique = true, nullable = false, length = 75)
+    @Column(name = "nombres", nullable = false, length = 75)
     private String nombres;
 
-    @Column(name = "apellidos", unique = true, nullable = false, length = 75)
+    @Column(name = "apellidos", nullable = false, length = 75)
     private String apellidos;
 
-    @Column(name = "usuarioingreso", unique = true, nullable = false, length = 75)
+    @Column(name = "usuarioingreso", nullable = false, length = 75)
     private String usuarioingreso;
 
     @Column(name = "fechanacimiento", nullable = false)
@@ -30,7 +30,7 @@ public class UsuariosInternos implements Serializable {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Calendar fechanacimiento;
 
-    @Column(name = "nacionalidad", unique = true, nullable = false, length = 50)
+    @Column(name = "nacionalidad", nullable = false, length = 50)
     private String nacionalidad;
 
     @Column(name = "correo", unique = true, nullable = false, length = 75)
@@ -48,7 +48,7 @@ public class UsuariosInternos implements Serializable {
     @Column(name = "direccion", nullable = false, length = 150)
     private String direccion;
 
-    @Column(name = "contrasenia", unique = true, nullable = false, length = 75)
+    @Column(name = "contrasenia",  nullable = false, length = 75)
     private String contrasenia;
 
     @Column(name = "idroles", nullable = false)
@@ -71,7 +71,7 @@ public class UsuariosInternos implements Serializable {
     private Calendar fechamodicar;
 
 
-    @Column(name = "genero", unique = true, nullable = false, length = 1)
+    @Column(name = "genero",  nullable = false, length = 1)
     private String genero;
 
     @Column(name = "idaeropuerto", nullable = false)
