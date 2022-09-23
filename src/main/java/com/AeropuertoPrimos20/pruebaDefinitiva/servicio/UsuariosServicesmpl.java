@@ -1,36 +1,51 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
+import com.AeropuertoPrimos20.pruebaDefinitiva.excepciones.ResourceNotFoundException;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Usuario;
-import java.awt.print.Pageable;
-import java.util.List;
-import org.springframework.data.domain.Page;
+import com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio.Usuarios;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
+@Service
 public class UsuariosServicesmpl implements UsuariosServices{
 
+    @Autowired
+    private Usuarios repositorio;
     @Override
+    @Transactional(readOnly = true)
     public List<Usuario> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return(List<Usuario>) repositorio.findAll();
+    }
+
+
+    @Override
+    public Usuario save(Usuario usuario) {
+        repositorio.save(usuario);
+        return usuario;
     }
 
     @Override
-    public Page<Usuario> findAll(Pageable pageable) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void save(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+    @Transactional(readOnly = true)
     public Usuario findOne(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return repositorio.findById(id).orElse(null);
     }
 
     @Override
     public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<Usuario> usuario = repositorio.findById(id);
+        if(usuario.isPresent()){
+            repositorio.deleteById(usuario.get().getIdusuario());
+        }
     }
-    
-    
+
+    @Override
+    public Usuario findById(Long id) {
+        return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id));
+    }
+
+
 }

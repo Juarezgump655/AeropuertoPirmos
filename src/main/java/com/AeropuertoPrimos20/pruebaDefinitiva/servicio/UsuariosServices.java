@@ -6,9 +6,7 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Usuario;
-import org.springframework.data.domain.Page;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 public interface UsuariosServices {
@@ -17,10 +15,8 @@ public interface UsuariosServices {
     public List<Usuario> findAll();
     // paginacion
 
-    public Page<Usuario> findAll(Pageable pageable);
-
     //Guardar usuario
-    public void save(Usuario usuario);
+    public Usuario save(Usuario usuario);
 
     //buscar el usuario
     public Usuario findOne(Long id);
@@ -28,4 +24,7 @@ public interface UsuariosServices {
 
      //Eliminar el usuario
     public void delete(Long id);
+
+    public Usuario findById(Long id);
+
 }

@@ -6,11 +6,13 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Usuario;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface Usuarios extends JpaRepository<Usuario, Long> {
-    
+public interface Usuarios extends CrudRepository<Usuario, Long> {
+
+
+
 }
  

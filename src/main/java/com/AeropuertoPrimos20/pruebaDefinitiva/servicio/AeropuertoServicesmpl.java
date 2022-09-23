@@ -1,35 +1,51 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
+import com.AeropuertoPrimos20.pruebaDefinitiva.excepciones.ResourceNotFoundException;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
-import org.springframework.data.domain.Page;
+import com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio.AeropuertoRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.print.Pageable;
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class AeropuertoServicesmpl implements  AeropuertoServices{
 
+    @Autowired
+    private AeropuertoRepo repositorio;
     @Override
+    @Transactional(readOnly = true)
     public List<Aeropuertos> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return(List<Aeropuertos>) repositorio.findAll();
+
     }
 
     @Override
-    public Page<Aeropuertos> findAll(Pageable pageable) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Transactional
+    public Aeropuertos save(Aeropuertos aeropuertos) {
+        repositorio.save(aeropuertos);
+        return  aeropuertos;
     }
 
     @Override
-    public void save(Aeropuertos aeropuertos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+    @Transactional(readOnly = true)
     public Aeropuertos findOne(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return repositorio.findById(id).orElse(null);
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<Aeropuertos> aeropuertos = repositorio.findById(id);
+        if(aeropuertos.isPresent()){
+            repositorio.deleteById(aeropuertos.get().getIdaeropuerto());
+        }
+    }
+
+    @Override
+    public Aeropuertos findById(Long id) {
+        return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id));
     }
 }

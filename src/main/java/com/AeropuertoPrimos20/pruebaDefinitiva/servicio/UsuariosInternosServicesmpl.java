@@ -1,36 +1,60 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
+import com.AeropuertoPrimos20.pruebaDefinitiva.excepciones.ResourceNotFoundException;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.UsuariosInternos;
-import org.springframework.data.domain.Page;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.RoleNameProjection;
+import com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio.UsuarioInterno;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.print.Pageable;
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class  UsuariosInternosServicesmpl implements UsuariosInternosServices {
 
+    @Autowired
+    private UsuarioInterno repositorio;
 
     @Override
+    @Transactional(readOnly = true)
     public List<UsuariosInternos> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return(List<UsuariosInternos>) repositorio.findAll();
     }
 
     @Override
-    public Page<UsuariosInternos> findAll(Pageable pageable) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<RoleNameProjection> traerNombre() {
+        return repositorio.traerNombre();
     }
 
-    @Override
-    public void save(UsuariosInternos UsuarioInterno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
+    @Transactional
+    public UsuariosInternos save(UsuariosInternos usuarioInterno) {
+        repositorio.save(usuarioInterno);
+        return usuarioInterno;
+    }
+
+
+    @Override
+    @Transactional(readOnly = true)
     public UsuariosInternos findOne(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id));
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional <UsuariosInternos> usuariosInternos = repositorio.findById(id);
+        if(usuariosInternos.isPresent()){
+            repositorio.deleteById(usuariosInternos.get().getIdusuariointerno());
+        }
     }
+
+    @Override
+    public UsuariosInternos findById(Long id) {
+       return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id));
+    }
+
 }

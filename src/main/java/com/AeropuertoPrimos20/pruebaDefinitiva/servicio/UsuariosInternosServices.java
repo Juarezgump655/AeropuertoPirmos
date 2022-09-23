@@ -1,21 +1,20 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.UsuariosInternos;
-import org.springframework.data.domain.Page;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.RoleNameProjection;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 public interface UsuariosInternosServices {
 
     //metodo para buscar todos los empleados
     public List<UsuariosInternos> findAll();
+
+    public List<RoleNameProjection> traerNombre();
     // paginacion
 
-    public Page<UsuariosInternos> findAll(Pageable pageable);
-
     //Guardar usuario
-    public void save(UsuariosInternos UsuarioInterno);
+    public UsuariosInternos save(UsuariosInternos UsuarioInterno);
 
     //buscar el usuario
     public UsuariosInternos findOne(Long id);
@@ -23,5 +22,6 @@ public interface UsuariosInternosServices {
     //Eliminar el usuario
     public void delete(Long id);
 
+    public UsuariosInternos findById(Long id);
 
 }

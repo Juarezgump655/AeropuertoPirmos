@@ -24,6 +24,9 @@ public class Aerolineas implements Serializable {
     @Column(name = "codigopais", nullable = false)
     private int codigopais;
 
+    @Column(name = "numerotelefono", nullable = false)
+    private String numerotelefono;
+
     @Column(name = "idestado", nullable = false)
     private Long idestado;
 
@@ -53,11 +56,12 @@ public class Aerolineas implements Serializable {
 
     }
 
-    public Aerolineas(long idaerolineas, String nombreaerolinea, String correo, int codigopais, Long idestado, Long idusuariocreacion, Long idaeropuerto, Long vuelos, Long aviones, Calendar fechacreacion, Calendar fechamodicar) {
+    public Aerolineas(long idaerolineas, String nombreaerolinea, String correo, int codigopais, String numerotelefono, Long idestado, Long idusuariocreacion, Long idaeropuerto, Long vuelos, Long aviones, Calendar fechacreacion, Calendar fechamodicar) {
         this.idaerolineas = idaerolineas;
         this.nombreaerolinea = nombreaerolinea;
         this.correo = correo;
         this.codigopais = codigopais;
+        this.numerotelefono = numerotelefono;
         this.idestado = idestado;
         this.idusuariocreacion = idusuariocreacion;
         this.idaeropuerto = idaeropuerto;
@@ -97,6 +101,14 @@ public class Aerolineas implements Serializable {
 
     public void setCodigopais(int codigopais) {
         this.codigopais = codigopais;
+    }
+
+    public String getNumerotelefono() {
+        return numerotelefono;
+    }
+
+    public void setNumerotelefono(String numerotelefono) {
+        this.numerotelefono = numerotelefono;
     }
 
     public Long getIdestado() {

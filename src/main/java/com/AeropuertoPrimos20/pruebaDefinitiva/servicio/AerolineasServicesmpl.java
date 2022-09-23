@@ -1,36 +1,54 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
+import com.AeropuertoPrimos20.pruebaDefinitiva.excepciones.ResourceNotFoundException;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aerolineas;
-import org.springframework.data.domain.Page;
+import com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio.AerolienaRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.print.Pageable;
 import java.util.List;
+import java.util.Optional;
 
-public class AerolineasServicesmpl  implements AerolineasServices{
+@Service
+public class AerolineasServicesmpl  implements AerolineasServices {
 
+    @Autowired
+    private AerolienaRepo repositorio;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Aerolineas> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return(List<Aerolineas>) repositorio.findAll();
+    }
+
+
+    @Override
+    @Transactional
+    public Aerolineas save(Aerolineas aerolineas) {
+      repositorio.save(aerolineas);
+      return aerolineas;
     }
 
     @Override
-    public Page<Aerolineas> findAll(Pageable pageable) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void save(Aerolineas aerolineas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+    @Transactional(readOnly = true)
     public Aerolineas findOne(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return repositorio.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id));
     }
 
     @Override
     public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Optional<Aerolineas> aerolineas = repositorio.findById(id);
+        if(aerolineas.isPresent()){
+            repositorio.deleteById(aerolineas.get().getIdaerolineas());
+        }
     }
+
+    @Override
+    public Aerolineas findById(Long id) {
+       return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id));
+    }
+
 }
+

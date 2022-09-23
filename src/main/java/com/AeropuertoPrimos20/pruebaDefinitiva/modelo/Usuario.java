@@ -37,8 +37,6 @@ public class Usuario implements Serializable {
     @Column(name ="codigopais", nullable =false)
     private int codigopais;
 
-    @Column(name= "genero", nullable = false)
-    private String genero;
 
     @Column(name ="numerotelefoono", nullable =false)
     private String numerotelefoono;
@@ -74,7 +72,7 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(Long idusuario, Long numeroPasaporte, String nombreCliente, String apellidocliente, Calendar fechanacimiento, String nacionalidad, String correo, int codigopais, String genero, String numerotelefoono, String numerotelefoonoem, String direccion, String contrasenia, Long idroles, Long idestado, Long idusuariocreacion, Calendar fechacreacion, Calendar fechamodicar) {
+    public Usuario(Long idusuario, Long numeroPasaporte, String nombreCliente, String apellidocliente, Calendar fechanacimiento, String nacionalidad, String correo, int codigopais,  String numerotelefoono, String numerotelefoonoem, String direccion, String contrasenia, Long idroles, Long idestado, Long idusuariocreacion, Calendar fechacreacion, Calendar fechamodicar) {
         this.idusuario = idusuario;
         this.numeroPasaporte = numeroPasaporte;
         this.nombreCliente = nombreCliente;
@@ -83,7 +81,6 @@ public class Usuario implements Serializable {
         this.nacionalidad = nacionalidad;
         this.correo = correo;
         this.codigopais = codigopais;
-        this.genero = genero;
         this.numerotelefoono = numerotelefoono;
         this.numerotelefoonoem = numerotelefoonoem;
         this.direccion = direccion;
@@ -157,14 +154,6 @@ public class Usuario implements Serializable {
 
     public void setCodigopais(int codigopais) {
         this.codigopais = codigopais;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
     }
 
     public String getNumerotelefoono() {

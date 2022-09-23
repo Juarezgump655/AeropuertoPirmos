@@ -3,18 +3,18 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.modelo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Calendar;
 @Entity
-@Table(name = "usuariosinternos")
-public class UsuariosInternos implements Serializable {
+@Table(name = "adminstrador")
+public class Adminstrador {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private long idusuariointerno;
+    private long idadminstrador;
 
-    @Column(name = "documentoidentificaion", unique = true, nullable = false)
-    private long documentoidentificaion;
+    @Column(name = "dpi", unique = true, nullable = false)
+    private String dpi;
 
     @Column(name = "nombres", nullable = false, length = 75)
     private String nombres;
@@ -39,23 +39,17 @@ public class UsuariosInternos implements Serializable {
     @Column(name = "numerotelefoono", nullable = false, length = 15)
     private String numerotelefoono;
 
-    @Column(name = "numerotelefoonoem", nullable = false, length = 15)
-    private String numerotelefoonoem;
-
     @Column(name = "direccion", nullable = false, length = 150)
     private String direccion;
 
     @Column(name = "contrasenia",  nullable = false, length = 75)
     private String contrasenia;
 
-    @Column(name = "id_rol", nullable = false)
+    @Column(name = "idroles", nullable = false)
     private Long  idroles;
 
     @Column(name = "idestado", nullable = false)
     private Long idestado;
-
-    @Column(name = "usariocreacion", nullable = false)
-    private Long usariocreacion;
 
     @Column(name = "fechacreacion", updatable = false, nullable = false)
     @Temporal(TemporalType.DATE)
@@ -67,24 +61,13 @@ public class UsuariosInternos implements Serializable {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Calendar fechamodicar;
 
-
-    @Column(name = "genero",  nullable = false, length = 1)
-    private String genero;
-
-    @Column(name = "idaeropuerto", nullable = false)
-    private Long idaeropuerto;
-
-    @Column(name = "idaerolinea", nullable = false)
-    private Long idaerolinea;
-
-
-    public UsuariosInternos() {
+    public Adminstrador() {
 
     }
 
-    public UsuariosInternos(long idusuariointerno, long documentoidentificaion, String nombres, String apellidos, Calendar fechanacimiento, String nacionalidad, String correo, int codigopais, String numerotelefoono, String numerotelefoonoem, String direccion, String contrasenia, Long idroles, Long idestado, Long usariocreacion, Calendar fechacreacion, Calendar fechamodicar, String genero, Long idaeropuerto, Long idaerolinea) {
-        this.idusuariointerno = idusuariointerno;
-        this.documentoidentificaion = documentoidentificaion;
+    public Adminstrador(long idadminstrador, String dpi, String nombres, String apellidos, Calendar fechanacimiento, String nacionalidad, String correo, int codigopais, String numerotelefoono, String direccion, String contrasenia, Long idroles, Long idestado, Calendar fechacreacion, Calendar fechamodicar) {
+        this.idadminstrador = idadminstrador;
+        this.dpi = dpi;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.fechanacimiento = fechanacimiento;
@@ -92,33 +75,28 @@ public class UsuariosInternos implements Serializable {
         this.correo = correo;
         this.codigopais = codigopais;
         this.numerotelefoono = numerotelefoono;
-        this.numerotelefoonoem = numerotelefoonoem;
         this.direccion = direccion;
         this.contrasenia = contrasenia;
         this.idroles = idroles;
         this.idestado = idestado;
-        this.usariocreacion = usariocreacion;
         this.fechacreacion = fechacreacion;
         this.fechamodicar = fechamodicar;
-        this.genero = genero;
-        this.idaeropuerto = idaeropuerto;
-        this.idaerolinea = idaerolinea;
     }
 
-    public long getIdusuariointerno() {
-        return idusuariointerno;
+    public long getIdadminstrador() {
+        return idadminstrador;
     }
 
-    public void setIdusuariointerno(long idusuariointerno) {
-        this.idusuariointerno = idusuariointerno;
+    public void setIdadminstrador(long idadminstrador) {
+        this.idadminstrador = idadminstrador;
     }
 
-    public long getDocumentoidentificaion() {
-        return documentoidentificaion;
+    public String getDpi() {
+        return dpi;
     }
 
-    public void setDocumentoidentificaion(long documentoidentificaion) {
-        this.documentoidentificaion = documentoidentificaion;
+    public void setDpi(String dpi) {
+        this.dpi = dpi;
     }
 
     public String getNombres() {
@@ -177,14 +155,6 @@ public class UsuariosInternos implements Serializable {
         this.numerotelefoono = numerotelefoono;
     }
 
-    public String getNumerotelefoonoem() {
-        return numerotelefoonoem;
-    }
-
-    public void setNumerotelefoonoem(String numerotelefoonoem) {
-        this.numerotelefoonoem = numerotelefoonoem;
-    }
-
     public String getDireccion() {
         return direccion;
     }
@@ -217,14 +187,6 @@ public class UsuariosInternos implements Serializable {
         this.idestado = idestado;
     }
 
-    public Long getUsariocreacion() {
-        return usariocreacion;
-    }
-
-    public void setUsariocreacion(Long usariocreacion) {
-        this.usariocreacion = usariocreacion;
-    }
-
     public Calendar getFechacreacion() {
         return fechacreacion;
     }
@@ -240,28 +202,5 @@ public class UsuariosInternos implements Serializable {
     public void setFechamodicar(Calendar fechamodicar) {
         this.fechamodicar = fechamodicar;
     }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public Long getIdaeropuerto() {
-        return idaeropuerto;
-    }
-
-    public void setIdaeropuerto(Long idaeropuerto) {
-        this.idaeropuerto = idaeropuerto;
-    }
-
-    public Long getIdaerolinea() {
-        return idaerolinea;
-    }
-
-    public void setIdaerolinea(Long idaerolinea) {
-        this.idaerolinea = idaerolinea;
-    }
 }
+
