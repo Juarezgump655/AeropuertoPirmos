@@ -1,11 +1,13 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.controlador;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoNameProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.servicio.AeropuertoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +23,7 @@ public class AeropuertoControlador {
 
     @GetMapping("/Aeropuerto")
     public List<Aeropuertos> ListarUsuarios(){
-        return  aeropuertoServices.findAll();
+        return  aeropuertoServices.findAllActivos();
 
     }
     //metodo para guardar el usuario esto sirve para enviar en formato json
@@ -37,6 +39,25 @@ public class AeropuertoControlador {
         Aeropuertos aeropuertos = aeropuertoServices.findById(id);
         return ResponseEntity.ok(aeropuertos);
     }
+
+    @GetMapping("/Aeropuerto/list")
+    public List<AeropuertoNameProjection> ListarAeropuertos(){
+        return  aeropuertoServices.traerAeropuertos();
+    }
+
+    @GetMapping("/Aeropuerto/filtro/{id}")
+    public List<Aeropuertos> obtenerAeropuertosID(@PathVariable Long id){
+        Aeropuertos aeropuertos = aeropuertoServices.findById(id);
+        List<Aeropuertos> lista= new ArrayList<Aeropuertos>();
+        lista.add(aeropuertos);
+        return lista;
+    }
+    @GetMapping("/Aeropuerto/filtro/{nombre}/{direccion}")
+    public List<Aeropuertos> obtenerAeropuertosfiltro(@PathVariable String nombre, @PathVariable String direccion){
+        return aeropuertoServices.findbynombreAnddireccion(nombre , direccion);
+    }
+
+
 
     @PutMapping("/Aeropuerto/{id}")
     public ResponseEntity<Aeropuertos> actualizarUsuarioid(@PathVariable Long id, @RequestBody Aeropuertos detallesAeropuertos){

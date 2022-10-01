@@ -1,11 +1,14 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.controlador;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aerolineas;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AerolineaNameProjection;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.TableAreolineaProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.servicio.AerolineasServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +19,11 @@ public class AerolineaControlador {
     @Autowired
     private AerolineasServices aerolineasServices;
 
-    //este metodo sirve para listar todos los ususarios
+    //este metodo sirve para listar todos los aerolinea
 
     @GetMapping("/Aerolineas")
-    public List<Aerolineas> ListarUsuarios(){
-        return  aerolineasServices.findAll();
+    public  List<TableAreolineaProjection>ListarAerolinea(){
+        return  aerolineasServices.findAllActivos();
     }
     //metodo para guardar el usuario esto sirve para enviar en formato json
 
@@ -30,11 +33,29 @@ public class AerolineaControlador {
         return aerolineasServices.save(aerolineas);
     }
 
+    @GetMapping("/Aerolineas/list")
+    public List<AerolineaNameProjection> ListarAeroinea(){
+        return  aerolineasServices.traerAerolineas();
+    }
+
+
+    @GetMapping("/Aerolineas/filtro/{id}")
+    public List<Aerolineas> obtenerAerolineasID(@PathVariable Long id){
+        Aerolineas aerolineas = aerolineasServices.findById(id);
+        List<Aerolineas> lista= new ArrayList<Aerolineas>();
+        lista.add(aerolineas);
+        return lista;
+    }
     //buusca usuarios por id
     @GetMapping("/Aerolineas/{id}")
     public ResponseEntity<Aerolineas> onbtenerAerolineaId(@PathVariable Long id){
         Aerolineas aerolineas = aerolineasServices.findById(id);
         return ResponseEntity.ok(aerolineas);
+    }
+
+    @GetMapping("/Aerolineas/filtro/{nombre}/{id}")
+    public List<TableAreolineaProjection> obtenerAeropuertosfiltro(@PathVariable String nombre, @PathVariable Long id){
+        return aerolineasServices.findbynombreAnddireccion(nombre , id);
     }
 
     @PutMapping("/Aerolineas/{id}")

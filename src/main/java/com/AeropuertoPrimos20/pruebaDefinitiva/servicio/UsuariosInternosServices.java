@@ -2,6 +2,7 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.UsuariosInternos;
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.RoleNameProjection;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.TableUsuariosProjection;
 
 import java.util.List;
 
@@ -11,7 +12,20 @@ public interface UsuariosInternosServices {
     public List<UsuariosInternos> findAll();
 
     public List<RoleNameProjection> traerNombre();
-    // paginacion
+
+    public List<TableUsuariosProjection> traertabla();
+
+    public  void deleteUsuario(Long id);
+
+    public  List<UsuariosInternos> traercopilotos();
+
+    public  List<UsuariosInternos> traerInges();
+
+    public List<UsuariosInternos> traerTripulantes();
+
+    public List<UsuariosInternos> traerpilotos();
+    public   List<TableUsuariosProjection> traerfiltro(String nombre, Long idaero, Long idaerolinea);
+    public List<UsuariosInternos> findAllActivos();
 
     //Guardar usuario
     public UsuariosInternos save(UsuariosInternos UsuarioInterno);

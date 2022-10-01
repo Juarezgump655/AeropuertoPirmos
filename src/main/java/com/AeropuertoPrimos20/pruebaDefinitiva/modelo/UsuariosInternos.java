@@ -68,9 +68,6 @@ public class UsuariosInternos implements Serializable {
     private Calendar fechamodicar;
 
 
-    @Column(name = "genero",  nullable = false, length = 1)
-    private String genero;
-
     @Column(name = "idaeropuerto", nullable = false)
     private Long idaeropuerto;
 
@@ -100,7 +97,6 @@ public class UsuariosInternos implements Serializable {
         this.usariocreacion = usariocreacion;
         this.fechacreacion = fechacreacion;
         this.fechamodicar = fechamodicar;
-        this.genero = genero;
         this.idaeropuerto = idaeropuerto;
         this.idaerolinea = idaerolinea;
     }
@@ -239,14 +235,6 @@ public class UsuariosInternos implements Serializable {
 
     public void setFechamodicar(Calendar fechamodicar) {
         this.fechamodicar = fechamodicar;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
     }
 
     public Long getIdaeropuerto() {

@@ -1,5 +1,6 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.controlador;
 
+import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Usuario;
 import com.AeropuertoPrimos20.pruebaDefinitiva.servicio.UsuariosServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,8 @@ public class UsuarioControlador {
         Usuario usuario = usuarioServices.findById(id);
         return ResponseEntity.ok(usuario);
     }
+
+
 
 
      @PutMapping("/Usuarios/{id}")

@@ -2,6 +2,7 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.excepciones.ResourceNotFoundException;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoNameProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio.AeropuertoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,23 @@ public class AeropuertoServicesmpl implements  AeropuertoServices{
     return(List<Aeropuertos>) repositorio.findAll();
 
     }
+
+    @Override
+    public List<Aeropuertos> findAllActivos() {
+        return(List<Aeropuertos>) repositorio.findAllActivos();
+    }
+
+    @Override
+    public List<AeropuertoNameProjection> traerAeropuertos() {
+        return repositorio.traerAeropuertos();
+    }
+
+    @Override
+    public List<Aeropuertos> findbynombreAnddireccion(String nombreaeropuerto, String direccion) {
+        return(List<Aeropuertos>) repositorio.findbynombreAnddireccion(nombreaeropuerto, direccion);
+    }
+
+
 
     @Override
     @Transactional

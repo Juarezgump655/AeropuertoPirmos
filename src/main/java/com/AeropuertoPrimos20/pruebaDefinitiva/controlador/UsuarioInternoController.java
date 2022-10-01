@@ -2,6 +2,7 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.controlador;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.UsuariosInternos;
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.RoleNameProjection;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.TableUsuariosProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.servicio.UsuariosInternosServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +25,14 @@ public class UsuarioInternoController {
 
 
     @GetMapping("/UsuariosInternos")
-    public List<UsuariosInternos> ListarUsuariosInternos(){
-        return  usuariosInternosServices.findAll();
+    public List<TableUsuariosProjection> ListarUsuariosInternos(){
+        return  usuariosInternosServices.traertabla();
 
     }
-
+    @GetMapping("/UsuariosInternos/filtro/{nombre}/{idaero}/{idaerolinea}")
+    public List<TableUsuariosProjection> obtenerAeropuertosfiltro(@PathVariable String nombre, @PathVariable Long idaero, @PathVariable Long idaerolinea){
+        return usuariosInternosServices.traerfiltro(nombre, idaero, idaerolinea);
+    }
     @GetMapping("/UsuariosInternos/rol")
     public List<RoleNameProjection> ListarUsuariosInterno(){
         return  usuariosInternosServices.traerNombre();
@@ -52,7 +56,25 @@ public class UsuarioInternoController {
         return ResponseEntity.ok(usuariosInternos);
     }
 
+    @GetMapping("/UsuariosInternos/pilotos")
+    public List<UsuariosInternos> onbtenerpilotos(){
+        return  usuariosInternosServices.traerpilotos();
+    }
 
+    @GetMapping("/UsuariosInternos/copilotos")
+    public List<UsuariosInternos> onbtenercopilotos(){
+        return  usuariosInternosServices.traercopilotos();
+    }
+
+    @GetMapping("/UsuariosInternos/ingenieros")
+    public List<UsuariosInternos> obtenerInges(){
+        return  usuariosInternosServices.traerInges();
+    }
+
+    @GetMapping("/UsuariosInternos/tripulantes")
+    public List<UsuariosInternos> obtenerTripulantes(){
+        return  usuariosInternosServices.traerTripulantes();
+    }
 
 
     @PutMapping("/UsuariosInternos/{id}")
@@ -66,7 +88,6 @@ public class UsuarioInternoController {
         usuariosInternos.setNacionalidad(detallesUsuariointerno.getNacionalidad());
         usuariosInternos.setCorreo(detallesUsuariointerno.getCorreo());
         usuariosInternos.setCodigopais(detallesUsuariointerno.getCodigopais());
-        usuariosInternos.setGenero(detallesUsuariointerno.getGenero());
         usuariosInternos.setNumerotelefoono(detallesUsuariointerno.getNumerotelefoono());
         usuariosInternos.setNumerotelefoonoem(detallesUsuariointerno.getNumerotelefoonoem());
         usuariosInternos.setDireccion(detallesUsuariointerno.getDireccion());

@@ -2,6 +2,8 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.excepciones.ResourceNotFoundException;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aerolineas;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AerolineaNameProjection;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.TableAreolineaProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio.AerolienaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,21 @@ public class AerolineasServicesmpl  implements AerolineasServices {
     @Transactional(readOnly = true)
     public List<Aerolineas> findAll() {
     return(List<Aerolineas>) repositorio.findAll();
+    }
+
+    @Override
+    public     List<TableAreolineaProjection> findAllActivos() {
+        return repositorio.findAllActivos();
+    }
+
+    @Override
+    public List<TableAreolineaProjection> findbynombreAnddireccion(String nombre, Long id) {
+        return(List<TableAreolineaProjection>) repositorio.findBynombreandIda(nombre, id);
+    }
+
+    @Override
+    public List<AerolineaNameProjection> traerAerolineas() {
+        return repositorio.traerAerolineas();
     }
 
 

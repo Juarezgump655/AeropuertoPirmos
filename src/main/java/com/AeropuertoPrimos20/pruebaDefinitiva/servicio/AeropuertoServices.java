@@ -1,6 +1,7 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoNameProjection;
 
 import java.util.List;
 
@@ -8,6 +9,10 @@ public interface AeropuertoServices {
 
     public List<Aeropuertos> findAll();
     // paginacion
+    public List<Aeropuertos> findAllActivos();
+    public List<AeropuertoNameProjection> traerAeropuertos();
+
+    public List<Aeropuertos> findbynombreAnddireccion(String nombreaeropuerto, String direccion);
 
     //Guardar usuario
     public Aeropuertos save(Aeropuertos aeropuertos);
