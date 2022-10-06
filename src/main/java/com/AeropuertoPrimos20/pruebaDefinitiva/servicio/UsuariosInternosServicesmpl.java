@@ -41,25 +41,29 @@ public class  UsuariosInternosServicesmpl implements UsuariosInternosServices {
     }
 
     @Override
-    public List<UsuariosInternos> traercopilotos() {
-        return(List<UsuariosInternos>) repositorio.traercopilotos();
-    }
-
-    @Override
-    public List<UsuariosInternos> traerInges() {
-        return (List<UsuariosInternos>) repositorio.traerInges();
-    }
-
-    @Override
-    public List<UsuariosInternos> traerTripulantes() {
-        return  (List<UsuariosInternos>) repositorio.traerTripulantes();
+    @Transactional(readOnly = true)
+    public List<UsuariosInternos> traercopilotos(Long idaero, Long idp) {
+        return(List<UsuariosInternos>) repositorio.traercopilotos(idaero,idp);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<UsuariosInternos> traerpilotos() {
-        return(List<UsuariosInternos>) repositorio.traerpilotos();
+    public List<UsuariosInternos> traerInges(Long idaero, Long idp) {
+        return (List<UsuariosInternos>) repositorio.traerInges(idaero, idp);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<UsuariosInternos> traerTripulantes(Long idaero, Long idp) {
+        return  (List<UsuariosInternos>) repositorio.traerTripulantes(idaero, idp);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<UsuariosInternos> traerpilotos(Long idaero, Long idp) {
+        return(List<UsuariosInternos>) repositorio.traerpilotos(idaero,idp);
+    }
+
 
     @Override
     @Transactional(readOnly = true)
@@ -103,6 +107,16 @@ public class  UsuariosInternosServicesmpl implements UsuariosInternosServices {
     @Override
     public UsuariosInternos findById(Long id) {
        return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id ));
+    }
+
+    @Override
+    public void eliminalogico(Long id) {
+        repositorio.eliminalogico(id);
+    }
+
+    @Override
+    public UsuariosInternos buscarAdministradores(Long id) {
+        return repositorio.buscarAdministradores(id);
     }
 
 }

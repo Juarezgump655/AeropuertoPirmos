@@ -56,9 +56,6 @@ public class Usuario implements Serializable {
     @Column(name= "idestado", nullable = false)
     private Long idestado;
 
-    @Column(name= "idusuariocreacion", nullable = false)
-    private Long idusuariocreacion;
-
     @Column(name = "fechacreacion", updatable = false, nullable = false)
     @JsonFormat(pattern = "dd-MM-yyyy")
     @Temporal(TemporalType.DATE)
@@ -87,7 +84,6 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
         this.idroles = idroles;
         this.idestado = idestado;
-        this.idusuariocreacion = idusuariocreacion;
         this.fechacreacion = fechacreacion;
         this.fechamodicar = fechamodicar;
     }
@@ -204,13 +200,6 @@ public class Usuario implements Serializable {
         this.idestado = idestado;
     }
 
-    public Long getIdusuariocreacion() {
-        return idusuariocreacion;
-    }
-
-    public void setIdusuariocreacion(Long idusuariocreacion) {
-        this.idusuariocreacion = idusuariocreacion;
-    }
 
     public Calendar getFechacreacion() {
         return fechacreacion;

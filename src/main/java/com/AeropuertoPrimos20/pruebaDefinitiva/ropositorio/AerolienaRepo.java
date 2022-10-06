@@ -14,7 +14,7 @@ public interface AerolienaRepo extends CrudRepository<Aerolineas, Long> {
 
     @Query(value="SELECT e.idaerolineas, e.nombreaerolinea, e.numerotelefono, e.correo, b.nombreaeropuerto, e.vuelos\n" +
             "    FROM  aeropuertos b, aerolineas e\n" +
-            "    WHERE e.idaeropuerto = b.idaeropuerto;", nativeQuery= true)
+            "    WHERE e.idaeropuerto = b.idaeropuerto AND  e.idestado = 1;", nativeQuery= true)
     List<TableAreolineaProjection> findAllActivos();
 
     @Query(value = "SELECT e.idaerolineas, e.nombreaerolinea, e.numerotelefono, e.correo, b.nombreaeropuerto, e.vuelos\n" +
@@ -27,4 +27,18 @@ public interface AerolienaRepo extends CrudRepository<Aerolineas, Long> {
 
     @Query(value = "Select idaerolineas, nombreaerolinea from aerolineas", nativeQuery = true)
     List<AerolineaNameProjection> traerAerolineas();
+
+    @Query(value = "UPDATE aerolineas SET idestado=2 WHERE idaerolineas=:id;", nativeQuery = true)
+    void eliminalogico(Long id);
+
+
+    @Query(value="SELECT * FROM aerolineas \n" +
+            "WHERE idaeropuerto =:id\n" +
+            "AND idestado=1", nativeQuery = true)
+    List<Aerolineas> consultasAero(Long id);
+
+
+
+
+
 }

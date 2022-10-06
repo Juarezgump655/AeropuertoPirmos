@@ -1,6 +1,7 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.controlador;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoDireccionProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoNameProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.servicio.AeropuertoServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,11 @@ public class AeropuertoControlador {
         return  aeropuertoServices.traerAeropuertos();
     }
 
+    @GetMapping("/Aeropuerto/direccion/{id}")
+    public List<AeropuertoDireccionProjection> Traerdireccion(@PathVariable Long id){
+        return  aeropuertoServices.traerDireccino(id);
+    }
+
     @GetMapping("/Aeropuerto/filtro/{id}")
     public List<Aeropuertos> obtenerAeropuertosID(@PathVariable Long id){
         Aeropuertos aeropuertos = aeropuertoServices.findById(id);
@@ -52,15 +58,24 @@ public class AeropuertoControlador {
         lista.add(aeropuertos);
         return lista;
     }
+
+
+
     @GetMapping("/Aeropuerto/filtro/{nombre}/{direccion}")
     public List<Aeropuertos> obtenerAeropuertosfiltro(@PathVariable String nombre, @PathVariable String direccion){
         return aeropuertoServices.findbynombreAnddireccion(nombre , direccion);
     }
 
+    @GetMapping("/Aeropuerto/consultas/{id}")
+    public List<Aeropuertos> obtenerAeropuertosConsulta( @PathVariable Long id){
+        return aeropuertoServices.traerAeroConsultas(id);
+    }
 
 
-    @PutMapping("/Aeropuerto/{id}")
-    public ResponseEntity<Aeropuertos> actualizarUsuarioid(@PathVariable Long id, @RequestBody Aeropuertos detallesAeropuertos){
+
+    @PutMapping("/Aeropuerto/{idusuario}/{id}")
+    public ResponseEntity<Aeropuertos> actualizarAeropuertoid(@PathVariable Long idusuario,@PathVariable Long id, @RequestBody Aeropuertos detallesAeropuertos){
+        System.out.println(id +"espacio"+ idusuario );
         Aeropuertos aeropuertos = aeropuertoServices.findById(id);
         aeropuertos.setIdaeropuerto(detallesAeropuertos.getIdaeropuerto());
         aeropuertos.setNombreaeropuerto(detallesAeropuertos.getNombreaeropuerto());
@@ -72,13 +87,14 @@ public class AeropuertoControlador {
         aeropuertos.setFechacreacion(detallesAeropuertos.getFechacreacion());
         aeropuertos.setFechamodicar(detallesAeropuertos.getFechamodicar());
         aeropuertos.setIdusuariocreacion(detallesAeropuertos.getIdusuariocreacion());
+        aeropuertos.setUsuarioModi(idusuario);
         Aeropuertos aeropuertoActualizado = aeropuertoServices.save(aeropuertos);
         return ResponseEntity.ok(aeropuertoActualizado);
     }
 
     //este metodo sirve para eliminar un empleado
     @DeleteMapping("/Aeropuerto/{id}")
-    public ResponseEntity<Map<String,Boolean>> eliminarUsuario(@PathVariable Long id){
+    public ResponseEntity<Map<String,Boolean>> eliminarAeropuerto(@PathVariable Long id){
         aeropuertoServices.delete(id);
         Map<String, Boolean> respuesta = new HashMap<>();
         respuesta.put("eliminar",Boolean.TRUE);

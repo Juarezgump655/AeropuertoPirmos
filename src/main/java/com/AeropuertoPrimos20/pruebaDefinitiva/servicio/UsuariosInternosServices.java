@@ -17,13 +17,13 @@ public interface UsuariosInternosServices {
 
     public  void deleteUsuario(Long id);
 
-    public  List<UsuariosInternos> traercopilotos();
+    List<UsuariosInternos> traercopilotos(Long idaero, Long idp);
 
-    public  List<UsuariosInternos> traerInges();
+    List<UsuariosInternos> traerInges(Long idaero, Long idp);
 
-    public List<UsuariosInternos> traerTripulantes();
+    List<UsuariosInternos> traerTripulantes(Long idaero, Long idp);
 
-    public List<UsuariosInternos> traerpilotos();
+    public     List<UsuariosInternos> traerpilotos(Long idaero, Long idp);
     public   List<TableUsuariosProjection> traerfiltro(String nombre, Long idaero, Long idaerolinea);
     public List<UsuariosInternos> findAllActivos();
 
@@ -37,5 +37,9 @@ public interface UsuariosInternosServices {
     public void delete(Long id);
 
     public UsuariosInternos findById(Long id);
+
+    public void eliminalogico(Long id);
+
+    public UsuariosInternos buscarAdministradores(Long id);
 
 }

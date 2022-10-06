@@ -14,50 +14,53 @@ public class Tripulacion implements Serializable {
     @Column(unique = true, nullable = false)
     private long idtripulacion;
 
-    @Column(name = "idaeropuerto", unique = true, nullable = false)
+    @Column(name = "idaeropuerto", nullable = false)
     private long idaeropuerto;
 
-    @Column(name = "idpiloto", unique = true, nullable = false)
+    @Column(name = "idpiloto", nullable = false)
     private long idpiloto;
 
-    @Column(name = "idcopiloto", unique = true, nullable = false)
+    @Column(name = "idcopiloto",  nullable = false)
     private long idcopiloto;
 
-    @Column(name = "idingeniero", unique = true, nullable = false)
+    @Column(name = "idingeniero",  nullable = false)
     private long idingeniero;
 
-    @Column(name = "idtripulantes1", unique = true, nullable = false)
+    @Column(name = "idtripulantes1",  nullable = false)
     private long idtripulantes1;
 
-    @Column(name = "idtripulantes2", unique = true, nullable = false)
+    @Column(name = "idtripulantes2",  nullable = false)
     private long idtripulantes2;
 
-    @Column(name = "idtripulantes3", unique = true, nullable = false)
+    @Column(name = "idtripulantes3",nullable = false)
     private long idtripulantes3;
 
-    @Column(name = "idaerolinea", unique = true, nullable = false)
+    @Column(name = "idaerolinea",  nullable = false)
     private long idaerolinea;
 
-    @Column(name = "idestado", unique = true, nullable = false)
+    @Column(name = "idestado", nullable = false)
     private long idestado;
 
-    @Column(name = "idavion", unique = true, nullable = false)
-    private long idavion;
+    @Column(name = "idavion")
+    private Integer idavion;
 
-    @Column(name = "fechacreacion", updatable = false, nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Column(name = "fechacreacion", nullable = false)
     @JsonFormat(pattern = "dd-MM-yyyy")
+    @Temporal(TemporalType.DATE)
     private Calendar fechacreacion;
 
     @Column(name = "fechamodicar", nullable = false)
-    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd-MM-yyyy")
+    @Temporal(TemporalType.DATE)
     private Calendar fechamodicar;
-
     @Column(name = "idusuariocreacion", nullable = false)
     private Long idusuariocreacion;
 
-    public Tripulacion(long idtripulacion, long idaeropuerto, long idpiloto, long idcopiloto, long idingeniero, long idtripulantes1, long idtripulantes2, long idtripulantes3, long idaerolinea, long idestado, long idavion, Calendar fechacreacion, Calendar fechamodicar, Long idusuariocreacion) {
+    public Tripulacion(){
+
+    }
+
+    public Tripulacion(long idtripulacion, long idaeropuerto, long idpiloto, long idcopiloto, long idingeniero, long idtripulantes1, long idtripulantes2, long idtripulantes3, long idaerolinea, long idestado, Integer idavion, Calendar fechacreacion, Calendar fechamodicar, Long idusuariocreacion) {
         this.idtripulacion = idtripulacion;
         this.idaeropuerto = idaeropuerto;
         this.idpiloto = idpiloto;
@@ -154,11 +157,11 @@ public class Tripulacion implements Serializable {
         this.idestado = idestado;
     }
 
-    public long getIdavion() {
+    public Integer getIdavion() {
         return idavion;
     }
 
-    public void setIdavion(long idavion) {
+    public void setIdavion(Integer idavion) {
         this.idavion = idavion;
     }
 

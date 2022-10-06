@@ -30,11 +30,13 @@ public class AerolineasServicesmpl  implements AerolineasServices {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<TableAreolineaProjection> findbynombreAnddireccion(String nombre, Long id) {
         return(List<TableAreolineaProjection>) repositorio.findBynombreandIda(nombre, id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<AerolineaNameProjection> traerAerolineas() {
         return repositorio.traerAerolineas();
     }
@@ -51,10 +53,11 @@ public class AerolineasServicesmpl  implements AerolineasServices {
     @Transactional(readOnly = true)
     public Aerolineas findOne(Long id) {
         return repositorio.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id));
+                .orElseThrow(()-> new ResourceNotFoundException("No existe la aerolinea con el ID: "+ id));
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         Optional<Aerolineas> aerolineas = repositorio.findById(id);
         if(aerolineas.isPresent()){
@@ -63,9 +66,17 @@ public class AerolineasServicesmpl  implements AerolineasServices {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Aerolineas findById(Long id) {
-       return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id));
+       return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe la aerolinea con el ID: "+ id));
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Aerolineas> consultasAero(Long id) {
+        return repositorio.consultasAero(id);
+    }
+
 
 }
 

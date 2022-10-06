@@ -55,30 +55,35 @@ public class UsuarioInternoController {
         UsuariosInternos usuariosInternos = usuariosInternosServices.findById(id);
         return ResponseEntity.ok(usuariosInternos);
     }
-
-    @GetMapping("/UsuariosInternos/pilotos")
-    public List<UsuariosInternos> onbtenerpilotos(){
-        return  usuariosInternosServices.traerpilotos();
+    @GetMapping("/UsuariosInternos/inicio-sesion/{id}")
+    public ResponseEntity<UsuariosInternos> inicioSesion(@PathVariable Long id){
+        UsuariosInternos usuariosInternos = usuariosInternosServices.buscarAdministradores(id);
+        return ResponseEntity.ok(usuariosInternos);
+    }
+    @GetMapping("/UsuariosInternos/pilotos/{idaero}/{idp}")
+    public List<UsuariosInternos> onbtenerpilotos(@PathVariable Long idaero, @PathVariable Long idp){
+        return  usuariosInternosServices.traerpilotos(idaero, idp);
     }
 
-    @GetMapping("/UsuariosInternos/copilotos")
-    public List<UsuariosInternos> onbtenercopilotos(){
-        return  usuariosInternosServices.traercopilotos();
+    @GetMapping("/UsuariosInternos/copilotos/{idaero}/{idp}")
+    public List<UsuariosInternos> onbtenercopilotos(@PathVariable Long idaero, @PathVariable Long idp){
+        return  usuariosInternosServices.traercopilotos(idaero, idp );
     }
 
-    @GetMapping("/UsuariosInternos/ingenieros")
-    public List<UsuariosInternos> obtenerInges(){
-        return  usuariosInternosServices.traerInges();
+    @GetMapping("/UsuariosInternos/ingenieros/{idaero}/{idp}")
+    public List<UsuariosInternos> obtenerInges(@PathVariable Long idaero, @PathVariable Long idp){
+        return  usuariosInternosServices.traerInges(idaero, idp );
     }
 
-    @GetMapping("/UsuariosInternos/tripulantes")
-    public List<UsuariosInternos> obtenerTripulantes(){
-        return  usuariosInternosServices.traerTripulantes();
+    @GetMapping("/UsuariosInternos/tripulantes/{idaero}/{idp}")
+    public List<UsuariosInternos> obtenerTripulantes(@PathVariable Long idaero, @PathVariable Long idp){
+        return  usuariosInternosServices.traerTripulantes(idaero, idp );
     }
 
 
-    @PutMapping("/UsuariosInternos/{id}")
-    public ResponseEntity<UsuariosInternos> actualizarUsuarioidinterno(@PathVariable Long id, @RequestBody UsuariosInternos detallesUsuariointerno){
+    @PutMapping("/UsuariosInternos/{idaero}/{id}")
+    public ResponseEntity<UsuariosInternos> actualizarUsuarioidinterno(@PathVariable Long idaero,@PathVariable Long id, @RequestBody UsuariosInternos detallesUsuariointerno){
+        System.out.println(idaero + "espacio"+ id );
         UsuariosInternos usuariosInternos = usuariosInternosServices.findById(id);
         usuariosInternos.setIdusuariointerno(detallesUsuariointerno.getIdusuariointerno());
         usuariosInternos.setDocumentoidentificaion(detallesUsuariointerno.getDocumentoidentificaion());
@@ -99,6 +104,7 @@ public class UsuarioInternoController {
         usuariosInternos.setFechacreacion(detallesUsuariointerno.getFechacreacion());
         usuariosInternos.setFechamodicar(detallesUsuariointerno.getFechamodicar());
         usuariosInternos.setIdaerolinea(detallesUsuariointerno.getIdaerolinea());
+        usuariosInternos.setUsuariomodi(idaero);
         UsuariosInternos usuarioActualizado = usuariosInternosServices.save(usuariosInternos);
         return ResponseEntity.ok(usuarioActualizado);
     }
@@ -111,5 +117,8 @@ public class UsuarioInternoController {
         respuesta.put("eliminar",Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
+
+
+
 
 }

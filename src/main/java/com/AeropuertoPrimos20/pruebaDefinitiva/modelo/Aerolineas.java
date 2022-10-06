@@ -52,11 +52,15 @@ public class Aerolineas implements Serializable {
     @Temporal(TemporalType.DATE)
     private Calendar fechamodicar;
 
+    @Column(name = "usuariomodi", nullable = false)
+    private Long usuariomodi;
+
+
     public Aerolineas() {
 
     }
 
-    public Aerolineas(long idaerolineas, String nombreaerolinea, String correo, int codigopais, String numerotelefono, Long idestado, Long idusuariocreacion, Long idaeropuerto, Long vuelos, Long aviones, Calendar fechacreacion, Calendar fechamodicar) {
+    public Aerolineas(long idaerolineas, String nombreaerolinea, String correo, int codigopais, String numerotelefono, Long idestado, Long idusuariocreacion, Long idaeropuerto, Long vuelos, Long aviones, Calendar fechacreacion, Calendar fechamodicar, Long usuariomodi) {
         this.idaerolineas = idaerolineas;
         this.nombreaerolinea = nombreaerolinea;
         this.correo = correo;
@@ -69,6 +73,7 @@ public class Aerolineas implements Serializable {
         this.aviones = aviones;
         this.fechacreacion = fechacreacion;
         this.fechamodicar = fechamodicar;
+        this.usuariomodi = usuariomodi;
     }
 
     public long getIdaerolineas() {
@@ -165,5 +170,13 @@ public class Aerolineas implements Serializable {
 
     public void setFechamodicar(Calendar fechamodicar) {
         this.fechamodicar = fechamodicar;
+    }
+
+    public Long getUsuariomodi() {
+        return usuariomodi;
+    }
+
+    public void setUsuariomodi(Long usuariomodi) {
+        this.usuariomodi = usuariomodi;
     }
 }

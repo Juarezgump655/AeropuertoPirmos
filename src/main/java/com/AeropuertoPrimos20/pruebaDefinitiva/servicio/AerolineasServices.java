@@ -23,8 +23,8 @@ public interface AerolineasServices {
     //Eliminar el usuario
     public void delete(Long id);
 
-
     public Aerolineas findById(Long id);
 
+    public List<Aerolineas> consultasAero(Long id);
 
 }

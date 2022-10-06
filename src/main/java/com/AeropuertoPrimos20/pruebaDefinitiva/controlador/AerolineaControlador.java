@@ -58,8 +58,14 @@ public class AerolineaControlador {
         return aerolineasServices.findbynombreAnddireccion(nombre , id);
     }
 
-    @PutMapping("/Aerolineas/{id}")
-    public ResponseEntity<Aerolineas> actualizarUsuarioid(@PathVariable Long id, @RequestBody Aerolineas detallesAerolineas){
+    @GetMapping("/Aerolineas/consultas/{idusuario}/{id}")
+    public List<Aerolineas> consultasAerolinea(@PathVariable Long idusuario, @PathVariable Long id){
+        return aerolineasServices.consultasAero(id);
+    }
+
+    @PutMapping("/Aerolineas/{idusuario}/{id}")
+    public ResponseEntity<Aerolineas> actualizarAeroilneaid(@PathVariable Long idusuario, @PathVariable Long id, @RequestBody Aerolineas detallesAerolineas){
+        System.out.println(idusuario);
         Aerolineas aerolineas = aerolineasServices.findById(id);
         aerolineas.setIdaerolineas(detallesAerolineas.getIdaerolineas());
         aerolineas.setNombreaerolinea(detallesAerolineas.getNombreaerolinea());
@@ -72,6 +78,7 @@ public class AerolineaControlador {
         aerolineas.setAviones(detallesAerolineas.getAviones());
         aerolineas.setFechacreacion(detallesAerolineas.getFechacreacion());
         aerolineas.setFechamodicar(detallesAerolineas.getFechamodicar());
+        aerolineas.setUsuariomodi(idusuario);
         Aerolineas aerolineasActualizado = aerolineasServices.save(aerolineas);
         return ResponseEntity.ok(aerolineasActualizado);
     }

@@ -47,5 +47,10 @@ public class UsuariosServicesmpl implements UsuariosServices{
         return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id));
     }
 
+    @Override
+    public Usuario buscarNumero(Long numeroPasaporte) {
+        return repositorio.buscarNumero(numeroPasaporte);
+    }
+
 
 }

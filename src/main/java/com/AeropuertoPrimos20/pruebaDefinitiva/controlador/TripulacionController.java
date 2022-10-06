@@ -26,8 +26,8 @@ public class TripulacionController {
     }
 
 
-    @PostMapping("/Tripulacion")
-    public Tripulacion guardarTripu(@RequestBody Tripulacion Tripulacion){
+    @PostMapping("/Tripulacion/{id}")
+    public Tripulacion guardarTripu(@PathVariable Long id,@RequestBody Tripulacion Tripulacion){
         System.out.print(Tripulacion);
         return tripulacionServices.save(Tripulacion);
     }
@@ -45,6 +45,7 @@ public class TripulacionController {
         tripulacion.setIdaeropuerto(detalleTripulacion.getIdaeropuerto());
         tripulacion.setIdpiloto(detalleTripulacion.getIdpiloto());
         tripulacion.setIdcopiloto(detalleTripulacion.getIdcopiloto());
+        tripulacion.setIdingeniero(detalleTripulacion.getIdingeniero());
         tripulacion.setIdtripulantes1(detalleTripulacion.getIdtripulantes1());
         tripulacion.setIdtripulantes2(detalleTripulacion.getIdtripulantes2());
         tripulacion.setIdtripulantes3(detalleTripulacion.getIdtripulantes3());

@@ -27,4 +27,6 @@ public interface UsuariosServices {
 
     public Usuario findById(Long id);
 
+    public  Usuario buscarNumero(Long numeroPasaporte);
+
 }

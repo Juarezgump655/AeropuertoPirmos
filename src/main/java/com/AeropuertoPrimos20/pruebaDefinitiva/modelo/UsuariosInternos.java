@@ -74,12 +74,14 @@ public class UsuariosInternos implements Serializable {
     @Column(name = "idaerolinea", nullable = false)
     private Long idaerolinea;
 
+    @Column(name = "usuariomodi", nullable = false)
+    private Long usuariomodi;
 
     public UsuariosInternos() {
 
     }
 
-    public UsuariosInternos(long idusuariointerno, long documentoidentificaion, String nombres, String apellidos, Calendar fechanacimiento, String nacionalidad, String correo, int codigopais, String numerotelefoono, String numerotelefoonoem, String direccion, String contrasenia, Long idroles, Long idestado, Long usariocreacion, Calendar fechacreacion, Calendar fechamodicar, String genero, Long idaeropuerto, Long idaerolinea) {
+    public UsuariosInternos(long idusuariointerno, long documentoidentificaion, String nombres, String apellidos, Calendar fechanacimiento, String nacionalidad, String correo, int codigopais, String numerotelefoono, String numerotelefoonoem, String direccion, String contrasenia, Long idroles, Long idestado, Long usariocreacion, Calendar fechacreacion, Calendar fechamodicar, Long idaeropuerto, Long idaerolinea, Long usuariomodi) {
         this.idusuariointerno = idusuariointerno;
         this.documentoidentificaion = documentoidentificaion;
         this.nombres = nombres;
@@ -99,7 +101,9 @@ public class UsuariosInternos implements Serializable {
         this.fechamodicar = fechamodicar;
         this.idaeropuerto = idaeropuerto;
         this.idaerolinea = idaerolinea;
+        this.usuariomodi = usuariomodi;
     }
+
 
     public long getIdusuariointerno() {
         return idusuariointerno;
@@ -251,5 +255,13 @@ public class UsuariosInternos implements Serializable {
 
     public void setIdaerolinea(Long idaerolinea) {
         this.idaerolinea = idaerolinea;
+    }
+
+    public Long getUsuariomodi() {
+        return usuariomodi;
+    }
+
+    public void setUsuariomodi(Long usuariomodi) {
+        this.usuariomodi = usuariomodi;
     }
 }

@@ -1,6 +1,7 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoDireccionProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoNameProjection;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -27,10 +28,20 @@ public interface AeropuertoRepo extends CrudRepository<Aeropuertos, Long> {
             "AND idestado = 1;", nativeQuery= true)
     List<Aeropuertos> findbynombreAnddireccion(String nombreaeropuerto, String direccion);
 
-    @Query(value="SELECT idaeropuerto, nombreaeropuerto, nopuertas, direccion, pais, notelefono, idestado, fechacreacion, fechamodicar, idusuariocreacion\n" +
+    @Query(value="SELECT idaeropuerto, nombreaeropuerto, nopuertas, direccion, pais, notelefono, idestado, fechacreacion, fechamodicar, idusuariocreacion, usuariomodi\n" +
             "\tFROM public.aeropuertos WHERE idestado=1;", nativeQuery= true)
     List<Aeropuertos> findAllActivos();
 
+    @Query(value = "UPDATE aeropuertos SET idestado=2 WHERE idaeropuerto=:id;", nativeQuery = true)
+    void eliminalogico(Long id);
 
+    @Query(value="SELECT pais FROM aeropuertos \n" +
+            "WHERE idestado=1\n" +
+            "AND idaeropuerto != :id\n", nativeQuery= true)
+    List<AeropuertoDireccionProjection> traerDireccino(Long id);
 
+@Query(value="SELECT * FROM aeropuertos\n" +
+        "            WHERE idestado=1\n" +
+        "            AND idaeropuerto != :id", nativeQuery = true)
+    List<Aeropuertos> traerAeroConsu(Long id);
 }

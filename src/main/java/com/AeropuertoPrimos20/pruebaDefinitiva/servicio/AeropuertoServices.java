@@ -1,6 +1,7 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoDireccionProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoNameProjection;
 
 import java.util.List;
@@ -24,4 +25,8 @@ public interface AeropuertoServices {
     public void delete(Long id);
 
     public Aeropuertos findById(Long id);
+
+    public List<AeropuertoDireccionProjection> traerDireccino(Long id);
+
+    public List<Aeropuertos> traerAeroConsultas(Long id);
 }

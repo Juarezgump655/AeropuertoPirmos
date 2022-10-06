@@ -1,6 +1,5 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.controlador;
 
-import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Usuario;
 import com.AeropuertoPrimos20.pruebaDefinitiva.servicio.UsuariosServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +40,13 @@ public class UsuarioControlador {
         return ResponseEntity.ok(usuario);
     }
 
+    @GetMapping("/Usuarios/numeroPasaporte/{id}")
+    public Usuario obtenernumoero(@PathVariable Long id){;
+        return usuarioServices.buscarNumero(id);
+    }
 
 
-
-     @PutMapping("/Usuarios/{id}")
+    @PutMapping("/Usuarios/{id}")
      public ResponseEntity<Usuario> actualizarUsuarioid(@PathVariable Long id, @RequestBody Usuario detallesUsuario){
          Usuario usuario = usuarioServices.findById(id);
          usuario.setNumeroPasaporte(detallesUsuario.getNumeroPasaporte());

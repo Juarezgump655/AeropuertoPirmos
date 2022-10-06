@@ -47,10 +47,13 @@ public class Aeropuertos implements Serializable {
     @Column(name = "idusuariocreacion", nullable = false)
     private Long idusuariocreacion;
 
+    @Column(name = "usuariomodi", nullable = false)
+    private Long usuariomodi;
+
     public Aeropuertos() {
     }
 
-    public Aeropuertos(long idaeropuerto, String nombreaeropuerto, int nopuertas, String direccion, String pais, String notelefono, Long idestado, Calendar fechacreacion, Calendar fechamodicar, Long idusuariocreacion) {
+    public Aeropuertos(long idaeropuerto, String nombreaeropuerto, int nopuertas, String direccion, String pais, String notelefono, Long idestado, Calendar fechacreacion, Calendar fechamodicar, Long idusuariocreacion, Long usuarioModi) {
         this.idaeropuerto = idaeropuerto;
         this.nombreaeropuerto = nombreaeropuerto;
         this.nopuertas = nopuertas;
@@ -61,6 +64,7 @@ public class Aeropuertos implements Serializable {
         this.fechacreacion = fechacreacion;
         this.fechamodicar = fechamodicar;
         this.idusuariocreacion = idusuariocreacion;
+        this.usuariomodi = usuarioModi;
     }
 
     public long getIdaeropuerto() {
@@ -141,5 +145,13 @@ public class Aeropuertos implements Serializable {
 
     public void setIdusuariocreacion(Long idusuariocreacion) {
         this.idusuariocreacion = idusuariocreacion;
+    }
+
+    public Long getUsuarioModi() {
+        return usuariomodi;
+    }
+
+    public void setUsuarioModi(Long usuarioModi) {
+        usuariomodi = usuarioModi;
     }
 }

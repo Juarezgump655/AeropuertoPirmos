@@ -2,6 +2,7 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.excepciones.ResourceNotFoundException;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoDireccionProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoNameProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio.AeropuertoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,4 +67,16 @@ public class AeropuertoServicesmpl implements  AeropuertoServices{
     public Aeropuertos findById(Long id) {
         return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id));
     }
+
+    @Override
+    public List<AeropuertoDireccionProjection> traerDireccino(Long id) {
+        return repositorio.traerDireccino(id);
+    }
+
+    @Override
+    public List<Aeropuertos> traerAeroConsultas(Long id) {
+        return repositorio.traerAeroConsu(id);
+    }
+
+
 }

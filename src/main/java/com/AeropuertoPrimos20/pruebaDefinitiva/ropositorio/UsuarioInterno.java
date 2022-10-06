@@ -26,20 +26,28 @@ public interface UsuarioInterno extends CrudRepository<UsuariosInternos, Long> {
     List<RoleNameProjection> traerNombre();
 
     @Query(value ="SELECT * FROM usuariosinternos \n" +
-            "WHERE id_rol=7", nativeQuery = true)
-    List<UsuariosInternos> traerpilotos();
+            "        WHERE id_rol=7\n" +
+            "        AND idaerolinea=:idaero\n" +
+            "        AND idaeropuerto=:idp AND idestado=1", nativeQuery = true)
+    List<UsuariosInternos> traerpilotos(Long idaero, Long idp);
 
     @Query(value ="SELECT * FROM usuariosinternos \n" +
-            "WHERE id_rol=8", nativeQuery = true)
-    List<UsuariosInternos> traercopilotos();
+            "        WHERE id_rol=8\n" +
+            "        AND idaerolinea=:idaero\n" +
+            "        AND idaeropuerto=:idp AND idestado=1", nativeQuery = true)
+    List<UsuariosInternos> traercopilotos(Long idaero, Long idp);
 
     @Query(value ="SELECT * FROM usuariosinternos \n" +
-            "WHERE id_rol=9", nativeQuery = true)
-    List<UsuariosInternos> traerInges();
+            "        WHERE id_rol=9\n" +
+            "        AND idaerolinea=:idaero\n" +
+            "        AND idaeropuerto=:idp AND idestado=1;", nativeQuery = true)
+    List<UsuariosInternos> traerInges(Long idaero, Long idp);
 
     @Query(value ="SELECT * FROM usuariosinternos \n" +
-            "WHERE id_rol=10", nativeQuery = true)
-    List<UsuariosInternos> traerTripulantes();
+            "        WHERE id_rol=10\n" +
+            "        AND idaerolinea=:idaero\n" +
+            "        AND idaeropuerto=:idp AND idestado=1", nativeQuery = true)
+    List<UsuariosInternos> traerTripulantes(Long idaero, Long idp);
 
     @Query(value = "SELECT u.idusuariointerno, u.documentoidentificaion, u.nombres, u.apellidos, b.nombreaeropuerto, e.nombreaerolinea,\n" +
             "            r.nombrerol, u.numerotelefoono\n" +
@@ -50,11 +58,11 @@ public interface UsuarioInterno extends CrudRepository<UsuariosInternos, Long> {
             "                AND u.idestado = 1\n" +
             "                AND u.nombres LIKE %:nombre%\n" +
             "                AND u.idaeropuerto = :idaero\n" +
-            "                AND u.idaerolinea = :idaerolinea", nativeQuery = true)
+            "                AND u.idaerolinea = :idaerolinea AND u.idestado=1", nativeQuery = true)
     List<TableUsuariosProjection> traerfiltro(String nombre, Long idaero, Long idaerolinea);
 
 
-    @Query(value="SELECT idusuariointerno, documentoidentificaion, nombres, apellidos, fechanacimiento, nacionalidad, correo, codigopais, numerotelefoono, numerotelefoonoem, direccion, contrasenia, idestado, usariocreacion, fechacreacion, fechamodicar, idaeropuerto, idaerolinea, id_rol\n" +
+    @Query(value="SELECT idusuariointerno, documentoidentificaion, nombres, apellidos, fechanacimiento, nacionalidad, correo, codigopais, numerotelefoono, numerotelefoonoem, direccion, contrasenia, idestado, usariocreacion, fechacreacion, fechamodicar, idaeropuerto, idaerolinea, id_rol, usuariomodi\n" +
             "\tFROM usuariosinternos WHERE idestado=1;", nativeQuery= true)
     List<UsuariosInternos> findAllActivos();
 
@@ -63,5 +71,17 @@ public interface UsuarioInterno extends CrudRepository<UsuariosInternos, Long> {
             "\tSET  idestado=2\n" +
             "\tWHERE idusuariointerno=id;", nativeQuery = true)
     void deleteUsuario(Long id);
+
+    @Query(value = "UPDATE usuariosinternos SET idestado=2 WHERE idusuariointerno=:id;", nativeQuery = true)
+    void eliminalogico(Long id);
+
+
+    @Query(value = "SELECT * \n" +
+            "FROM usuariosinternos\n" +
+            "WHERE idusuariointerno= :id\n" +
+            "AND id_rol=1 AND idestado=1;", nativeQuery = true)
+    UsuariosInternos  buscarAdministradores(Long id);
+
+
 
 }
