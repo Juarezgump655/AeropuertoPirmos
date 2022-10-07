@@ -14,6 +14,8 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200/")
 public class AvionController {
 
+
+    AsientoController asiento = new AsientoController();
     @Autowired
     private AvionServices avionServices;
 
@@ -24,10 +26,11 @@ public class AvionController {
 
 
     @PostMapping("/Avion")
-    public Avion guardarAvion(@RequestBody Avion avion){
+    public Avion guardarAvion(@RequestBody Avion avion) {
         System.out.print(avion);
         return avionServices.save(avion);
     }
+
 
     @PutMapping("/Avion/{idusuario}/{id}")
     public ResponseEntity<Avion> actualizarAvionid(@PathVariable Long idusuario, @PathVariable Long id, @RequestBody Avion detallesAvion){
@@ -43,6 +46,7 @@ public class AvionController {
         avion.setFechamodicar(detallesAvion.getFechamodicar());
         avion.setIdusuariocreacion(detallesAvion.getIdusuariocreacion());
         avion.setIdaeropuerto(detallesAvion.getIdaeropuerto());
+        avion.setAnio(detallesAvion.getAnio());
         avion.setUsuariomodi(idusuario);
         Avion avionActualizado = avionServices.save(avion);
         return ResponseEntity.ok(avionActualizado);

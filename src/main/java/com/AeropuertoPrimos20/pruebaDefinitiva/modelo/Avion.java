@@ -50,11 +50,14 @@ public class Avion implements Serializable {
     @Column(name = "usuariomodi", nullable = false)
     private Long usuariomodi;
 
+    @Column(name = "anio", nullable = false)
+    private int anio;
+
 
     public Avion() {
     }
 
-    public Avion(long idavion, String marca, String modelo, Long vuelos, Long idestado, Long idaerolinea, Calendar fechacreacion, Calendar fechamodicar, Long idusuariocreacion, Long idaeropuerto, Long usuariomodi) {
+    public Avion(long idavion, String marca, String modelo, Long vuelos, Long idestado, Long idaerolinea, Calendar fechacreacion, Calendar fechamodicar, Long idusuariocreacion, Long idaeropuerto, Long usuariomodi, int anio) {
         this.idavion = idavion;
         this.marca = marca;
         this.modelo = modelo;
@@ -66,6 +69,7 @@ public class Avion implements Serializable {
         this.idusuariocreacion = idusuariocreacion;
         this.idaeropuerto = idaeropuerto;
         this.usuariomodi = usuariomodi;
+        this.anio = anio;
     }
 
     public long getIdavion() {
@@ -154,5 +158,13 @@ public class Avion implements Serializable {
 
     public void setUsuariomodi(Long usuariomodi) {
         this.usuariomodi = usuariomodi;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
 }
