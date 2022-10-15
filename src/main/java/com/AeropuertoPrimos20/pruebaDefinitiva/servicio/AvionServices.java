@@ -14,4 +14,6 @@ public interface AvionServices {
     //buscar por id
     public Avion findById(Long id);
 
+    public  List<Avion>  findByAerolinea(Long id);
+
 }

@@ -3,6 +3,7 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.excepciones.ResourceNotFoundException;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Asiento;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AsientosProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio.AsientoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,12 @@ public class AsinetosServicesmpl  implements  AsientoServices{
 
     @Override
     @Transactional(readOnly = true)
+    public List<AsientosProjection> findAllLibres(Long id) {
+        return(List<AsientosProjection>) repositorio.findAllLibres(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Asiento findById(Long id) {
         return repositorio.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("No existe el Asiento con el ID: "+ id));
@@ -35,4 +42,5 @@ public class AsinetosServicesmpl  implements  AsientoServices{
     public void saveAll(List<Asiento> listaasiento) {
         repositorio.saveAll(listaasiento);
     }
+
 }

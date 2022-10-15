@@ -8,13 +8,14 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Usuario;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Usuarios extends CrudRepository<Usuario, Long> {
 
     @Query(value = "SELECT * FROM usuarios Where numeropasaporte =:numeroPasaporte" , nativeQuery = true)
-    Usuario buscarNumero(Long numeroPasaporte);
+    Usuario buscarNumero(@Param("numeroPasaporte")  Long numeroPasaporte);
 
 }
  

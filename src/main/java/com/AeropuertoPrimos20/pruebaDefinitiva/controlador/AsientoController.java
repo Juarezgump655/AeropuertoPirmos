@@ -1,6 +1,7 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.controlador;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Asiento;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AsientosProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.servicio.AsientoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +13,26 @@ import java.util.Calendar;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v8/")
+@RequestMapping("/api/vA/")
 @CrossOrigin(origins = "http://localhost:4200/")
 public class AsientoController {
 
+
+    long[][] edad = new long[4][3];
+
     @Autowired
     private AsientoServices asientoServices;
+
+
+
+
+    @GetMapping("/Asiento/{id}")
+    public List<AsientosProjection> ListarAvion(@PathVariable Long id){
+        return  asientoServices.findAllLibres(id);
+    }
+
+
+
 
 
     @PostMapping("/Asiento/{asientos}/{id}")

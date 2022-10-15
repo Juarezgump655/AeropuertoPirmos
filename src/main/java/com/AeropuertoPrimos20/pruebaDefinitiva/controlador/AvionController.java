@@ -15,12 +15,11 @@ import java.util.List;
 public class AvionController {
 
 
-    AsientoController asiento = new AsientoController();
     @Autowired
     private AvionServices avionServices;
 
     @GetMapping("/Avion")
-    public List<Avion> ListarAerolinea(){
+    public List<Avion> ListarAvion(){
         return  avionServices.findAll();
     }
 
@@ -31,6 +30,12 @@ public class AvionController {
         return avionServices.save(avion);
     }
 
+
+    @GetMapping("/Avion/{idusuario}/{id}")
+    public List<Avion> findByAerolinea(@PathVariable Long id){
+        System.out.println("Se buscaron aviones con el id de la aerolinea " + id);
+        return avionServices.findByAerolinea(id);
+    }
 
     @PutMapping("/Avion/{idusuario}/{id}")
     public ResponseEntity<Avion> actualizarAvionid(@PathVariable Long idusuario, @PathVariable Long id, @RequestBody Avion detallesAvion){
@@ -50,6 +55,13 @@ public class AvionController {
         avion.setUsuariomodi(idusuario);
         Avion avionActualizado = avionServices.save(avion);
         return ResponseEntity.ok(avionActualizado);
+    }
+
+    @GetMapping("/Avion/{id}")
+    public ResponseEntity<Avion> onbtenerAvionId(@PathVariable Long id){
+        System.out.println("Se busco el avion con el id:  " + id);
+        Avion avion = avionServices.findById(id);
+        return ResponseEntity.ok(avion);
     }
 
 

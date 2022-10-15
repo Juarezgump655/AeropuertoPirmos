@@ -3,6 +3,7 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoDireccionProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoNameProjection;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.DestinosProjection;
 
 import java.util.List;
 
@@ -29,4 +30,6 @@ public interface AeropuertoServices {
     public List<AeropuertoDireccionProjection> traerDireccino(Long id);
 
     public List<Aeropuertos> traerAeroConsultas(Long id);
+
+    public     List<DestinosProjection> traerCiudad();
 }

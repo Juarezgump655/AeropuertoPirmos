@@ -34,4 +34,10 @@ public class AvionServicesmpl implements AvionServices{
         return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe el Avion con el ID: "+ id));
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Avion> findByAerolinea(Long id) {
+        return repositorio.findByAerolinea(id);
+    }
+
 }

@@ -3,6 +3,7 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.controlador;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Aeropuertos;
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoDireccionProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AeropuertoNameProjection;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.DestinosProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.servicio.AeropuertoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -51,6 +52,11 @@ public class AeropuertoControlador {
         return  aeropuertoServices.traerDireccino(id);
     }
 
+    @GetMapping("/Aeropuerto/ciudadades")
+    public List<DestinosProjection> traerCiudad(){
+        return  aeropuertoServices.traerCiudad();
+    }
+
     @GetMapping("/Aeropuerto/filtro/{id}")
     public List<Aeropuertos> obtenerAeropuertosID(@PathVariable Long id){
         Aeropuertos aeropuertos = aeropuertoServices.findById(id);
@@ -68,6 +74,7 @@ public class AeropuertoControlador {
 
     @GetMapping("/Aeropuerto/consultas/{id}")
     public List<Aeropuertos> obtenerAeropuertosConsulta( @PathVariable Long id){
+        System.out.println("Se buscaron aeropuertos con el id diferente a:  " + id);
         return aeropuertoServices.traerAeroConsultas(id);
     }
 

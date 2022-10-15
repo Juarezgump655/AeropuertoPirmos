@@ -5,6 +5,7 @@ import com.AeropuertoPrimos20.pruebaDefinitiva.projection.AerolineaNameProjectio
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.TableAreolineaProjection;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,19 +24,19 @@ public interface AerolienaRepo extends CrudRepository<Aerolineas, Long> {
             "              AND e.nombreaerolinea LIKE %:nombre%\n" +
             "              AND e.idaeropuerto = :id\n" +
             "              AND e.idestado = 1;", nativeQuery= true)
-    List<TableAreolineaProjection> findBynombreandIda(String nombre, Long id);
+    List<TableAreolineaProjection> findBynombreandIda(@Param("nombre") String nombre, @Param("id") Long id);
 
     @Query(value = "Select idaerolineas, nombreaerolinea from aerolineas", nativeQuery = true)
     List<AerolineaNameProjection> traerAerolineas();
 
     @Query(value = "UPDATE aerolineas SET idestado=2 WHERE idaerolineas=:id;", nativeQuery = true)
-    void eliminalogico(Long id);
+    void eliminalogico(@Param("id") Long id);
 
 
     @Query(value="SELECT * FROM aerolineas \n" +
             "WHERE idaeropuerto =:id\n" +
             "AND idestado=1", nativeQuery = true)
-    List<Aerolineas> consultasAero(Long id);
+    List<Aerolineas> consultasAero(@Param("id") Long id);
 
 
 

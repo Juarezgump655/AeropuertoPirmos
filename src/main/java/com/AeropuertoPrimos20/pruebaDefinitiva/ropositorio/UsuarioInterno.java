@@ -5,6 +5,7 @@ import com.AeropuertoPrimos20.pruebaDefinitiva.projection.RoleNameProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.projection.TableUsuariosProjection;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,32 +23,36 @@ public interface UsuarioInterno extends CrudRepository<UsuariosInternos, Long> {
     List<TableUsuariosProjection> traertabla();
 
     @Query(value = "SELECT idroles, nombrerol\n" +
-            "\tFROM public.roles;" , nativeQuery = true)
+            "        FROM public.roles\n" +
+            "        WHERE idroles !=5\n" +
+            "        AND idroles !=4\n" +
+            "        AND idroles !=2\n" +
+            "        AND idroles !=6" , nativeQuery = true)
     List<RoleNameProjection> traerNombre();
 
     @Query(value ="SELECT * FROM usuariosinternos \n" +
             "        WHERE id_rol=7\n" +
             "        AND idaerolinea=:idaero\n" +
             "        AND idaeropuerto=:idp AND idestado=1", nativeQuery = true)
-    List<UsuariosInternos> traerpilotos(Long idaero, Long idp);
+    List<UsuariosInternos> traerpilotos(@Param("idaero")  Long idaero, @Param("idp") Long idp);
 
     @Query(value ="SELECT * FROM usuariosinternos \n" +
             "        WHERE id_rol=8\n" +
             "        AND idaerolinea=:idaero\n" +
             "        AND idaeropuerto=:idp AND idestado=1", nativeQuery = true)
-    List<UsuariosInternos> traercopilotos(Long idaero, Long idp);
+    List<UsuariosInternos> traercopilotos(@Param("idaero")  Long idaero, @Param("idp") Long idp);
 
     @Query(value ="SELECT * FROM usuariosinternos \n" +
             "        WHERE id_rol=9\n" +
             "        AND idaerolinea=:idaero\n" +
             "        AND idaeropuerto=:idp AND idestado=1;", nativeQuery = true)
-    List<UsuariosInternos> traerInges(Long idaero, Long idp);
+    List<UsuariosInternos> traerInges(@Param("idaero")  Long idaero, @Param("idp") Long idp);
 
     @Query(value ="SELECT * FROM usuariosinternos \n" +
             "        WHERE id_rol=10\n" +
             "        AND idaerolinea=:idaero\n" +
             "        AND idaeropuerto=:idp AND idestado=1", nativeQuery = true)
-    List<UsuariosInternos> traerTripulantes(Long idaero, Long idp);
+    List<UsuariosInternos> traerTripulantes(@Param("idaero") Long idaero,@Param("idp") Long idp);
 
     @Query(value = "SELECT u.idusuariointerno, u.documentoidentificaion, u.nombres, u.apellidos, b.nombreaeropuerto, e.nombreaerolinea,\n" +
             "            r.nombrerol, u.numerotelefoono\n" +
@@ -59,7 +64,7 @@ public interface UsuarioInterno extends CrudRepository<UsuariosInternos, Long> {
             "                AND u.nombres LIKE %:nombre%\n" +
             "                AND u.idaeropuerto = :idaero\n" +
             "                AND u.idaerolinea = :idaerolinea AND u.idestado=1", nativeQuery = true)
-    List<TableUsuariosProjection> traerfiltro(String nombre, Long idaero, Long idaerolinea);
+    List<TableUsuariosProjection> traerfiltro(@Param("nombre")  String nombre,@Param("idaero")  Long idaero,@Param("idaerolinea")  Long idaerolinea);
 
 
     @Query(value="SELECT idusuariointerno, documentoidentificaion, nombres, apellidos, fechanacimiento, nacionalidad, correo, codigopais, numerotelefoono, numerotelefoonoem, direccion, contrasenia, idestado, usariocreacion, fechacreacion, fechamodicar, idaeropuerto, idaerolinea, id_rol, usuariomodi\n" +
@@ -70,17 +75,17 @@ public interface UsuarioInterno extends CrudRepository<UsuariosInternos, Long> {
             "   UPDATE public.usuariosinternos\n" +
             "\tSET  idestado=2\n" +
             "\tWHERE idusuariointerno=id;", nativeQuery = true)
-    void deleteUsuario(Long id);
+    void deleteUsuario(@Param("id")  Long id);
 
     @Query(value = "UPDATE usuariosinternos SET idestado=2 WHERE idusuariointerno=:id;", nativeQuery = true)
-    void eliminalogico(Long id);
+    void eliminalogico(@Param("id") Long id);
 
 
     @Query(value = "SELECT * \n" +
             "FROM usuariosinternos\n" +
             "WHERE idusuariointerno= :id\n" +
             "AND id_rol=1 AND idestado=1;", nativeQuery = true)
-    UsuariosInternos  buscarAdministradores(Long id);
+    UsuariosInternos  buscarAdministradores(@Param("id")   Long id);
 
 
 
