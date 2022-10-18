@@ -28,7 +28,9 @@ public class AsientoController {
 
     @GetMapping("/Asiento/{id}")
     public List<AsientosProjection> ListarAvion(@PathVariable Long id){
+        System.out.println("traendo asientos del avion: " + id);
         return  asientoServices.findAllLibres(id);
+
     }
 
 
@@ -47,17 +49,21 @@ public class AsientoController {
 
     }
 
+    @GetMapping("/Asiento/reservar/{id}")
+    public void reservarAsiento(@PathVariable Long id){
+        System.out.println("se reservo el asiento: " + id);
+       asientoServices.reservarAsientos(id);
+    }
 
 
-
-    @PutMapping("/Asiento/{idusuario}/{id}")
+    @PutMapping("/Asiento/{id}")
     public ResponseEntity<Asiento> actualizarAeroilneaid(@PathVariable Long idusuario, @PathVariable Long id, @RequestBody Asiento detalleAsiento){
         System.out.println(idusuario);
         Asiento asiento = asientoServices.findById(id);
         asiento.setId_asiento(detalleAsiento.getId_asiento());
         asiento.setAsiento(detalleAsiento.getAsiento());
         asiento.setId_avion(detalleAsiento.getId_avion());
-        asiento.setId_estado(detalleAsiento.getId_estado());
+        asiento.setId_estado(1L);
         asiento.setFechacreacion(detalleAsiento.getFechacreacion());
         asiento.setFechamodicar(detalleAsiento.getFechamodicar());
         Asiento asientoActualizado = asientoServices.save(asiento);

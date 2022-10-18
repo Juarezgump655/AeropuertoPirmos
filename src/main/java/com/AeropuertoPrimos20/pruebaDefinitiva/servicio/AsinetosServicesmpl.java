@@ -32,6 +32,17 @@ public class AsinetosServicesmpl  implements  AsientoServices{
     }
 
     @Override
+    public void reservarAsientos(Long id) {
+        try {
+            repositorio.reservarAsientos(id);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
+
+
+    @Override
     @Transactional(readOnly = true)
     public Asiento findById(Long id) {
         return repositorio.findById(id)

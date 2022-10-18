@@ -2,6 +2,7 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.excepciones.ResourceNotFoundException;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Tripulacion;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.TripulacionProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio.TripuRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,8 @@ public class TripulacionServicesmpl implements TripulacionServices{
 
     @Override
     @Transactional(readOnly = true)
-    public List<Tripulacion> findAllActivos() {
-        return(List<Tripulacion>) repositorio.findAllActivos();
+    public List<Tripulacion> findAllActivos(Long id) {
+        return(List<Tripulacion>) repositorio.findAllActivos(id);
     }
 
     @Override
@@ -46,5 +47,10 @@ public class TripulacionServicesmpl implements TripulacionServices{
     @Override
     public Tripulacion findById(Long id) {
         return repositorio.findById(id).orElseThrow(()-> new ResourceNotFoundException("No existe usuario con el ID: "+ id ));
+    }
+
+    @Override
+    public List<TripulacionProjection> tableTripu(Long id) {
+        return(List<TripulacionProjection>) repositorio.tableTripu(id);
     }
 }

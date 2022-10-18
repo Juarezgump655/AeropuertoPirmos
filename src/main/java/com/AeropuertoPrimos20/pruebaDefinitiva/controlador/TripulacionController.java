@@ -2,6 +2,7 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.controlador;
 
 
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Tripulacion;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.TripulacionProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.servicio.TripulacionServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,15 @@ public class TripulacionController {
     @Autowired
     private TripulacionServices tripulacionServices;
 
-    @GetMapping("/Tripulacion")
-    public List<Tripulacion> listarTripu(){
-        return  tripulacionServices.findAllActivos();
+    @GetMapping("/Tripulacion/aeropuerto/{id}")
+    public List<Tripulacion> listarTripu(@PathVariable Long id){
+        return  tripulacionServices.findAllActivos(id);
+
+    }
+
+    @GetMapping("/Tripulacion/tableaero/{id}")
+    public List<TripulacionProjection> traertripuaero(@PathVariable Long id){
+        return  tripulacionServices.tableTripu(id);
 
     }
 

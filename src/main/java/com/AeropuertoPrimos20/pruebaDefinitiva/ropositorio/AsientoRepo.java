@@ -15,7 +15,15 @@ public interface AsientoRepo extends CrudRepository<Asiento, Long> {
 
 
     @Query(value = "SELECT id_asiento, asiento,id_estado FROM asiento\n" +
-            "WHERE id_avion=:id", nativeQuery = true)
+            "WHERE id_avion=:id ORDER BY asiento ASC ", nativeQuery = true)
     List<AsientosProjection> findAllLibres(@Param("id")  Long id);
+
+
+    @Query(value = "UPDATE public.asiento\n" +
+            "\tSET id_estado=1\n" +
+            "\tWHERE id_asiento=:id", nativeQuery = true)
+     void reservarAsientos(@Param("id")  Long id);
+
+
 
 }

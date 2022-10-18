@@ -18,11 +18,13 @@ public class VuelosController {
 
     @GetMapping("/Vuelos")
     public List<Vuelos> listarvuelos(){
-        return  vueloServices.findAll();
+        System.out.println("Se esta consultando la tabla vuelos");
+        return(List<Vuelos>)  vueloServices.findAll();
     }
 
     @PostMapping("/Vuelos")
     public Vuelos guardarVuelo(@RequestBody Vuelos vuelos) {
+        System.out.println("Se esta guardo el vuelo: ");
         System.out.print(vuelos);
         return vueloServices.save(vuelos);
     }
@@ -30,6 +32,7 @@ public class VuelosController {
     @GetMapping("/Vuelos/{id}")
     public ResponseEntity<Vuelos> onbtenerVueloId(@PathVariable Long id){
         Vuelos vuelos = vueloServices.findById(id);
+        System.out.println("Se trajo el avion con id:  "  + id);
         return ResponseEntity.ok(vuelos);
     }
 

@@ -37,6 +37,8 @@ public class Asiento implements Serializable {
     @Temporal(TemporalType.DATE)
     private Calendar fechamodicar;
 
+    @Column(name= "usuariomodifico")
+    private Long usuariomodifico;
 
     public Asiento() {
     }
@@ -48,6 +50,16 @@ public class Asiento implements Serializable {
         this.id_estado = id_estado;
         this.fechacreacion = fechacreacion;
         this.fechamodicar = fechamodicar;
+    }
+
+    public Asiento(long id_asiento, int asiento, Long id_avion, Long id_estado, Calendar fechacreacion, Calendar fechamodicar, Long usuariomodifico) {
+        this.id_asiento = id_asiento;
+        this.asiento = asiento;
+        this.id_avion = id_avion;
+        this.id_estado = id_estado;
+        this.fechacreacion = fechacreacion;
+        this.fechamodicar = fechamodicar;
+        this.usuariomodifico = usuariomodifico;
     }
 
     public long getId_asiento() {
@@ -96,5 +108,13 @@ public class Asiento implements Serializable {
 
     public void setFechamodicar(Calendar fechamodicar) {
         this.fechamodicar = fechamodicar;
+    }
+
+    public Long getUsuariomodifico() {
+        return usuariomodifico;
+    }
+
+    public void setUsuariomodifico(Long usuariomodifico) {
+        this.usuariomodifico = usuariomodifico;
     }
 }
