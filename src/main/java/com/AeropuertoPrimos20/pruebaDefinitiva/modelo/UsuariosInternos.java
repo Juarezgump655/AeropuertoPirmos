@@ -24,7 +24,7 @@ public class UsuariosInternos implements Serializable {
 
     @Column(name = "fechanacimiento", nullable = false)
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar fechanacimiento;
 
     @Column(name = "nacionalidad", nullable = false, length = 50)

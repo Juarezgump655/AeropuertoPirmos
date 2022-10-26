@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class AvionServicesmpl implements AvionServices{
 
@@ -38,6 +40,43 @@ public class AvionServicesmpl implements AvionServices{
     @Transactional(readOnly = true)
     public List<Avion> findByAerolinea(Long id) {
         return repositorio.findByAerolinea(id);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        Optional<Avion> avion = repositorio.findById(id);
+        if(avion.isPresent()){
+            repositorio.deleteById(avion.get().getIdavion());
+        }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Avion> findByAerolineaT(Long id) {
+        return repositorio.findByAerolineaT(id);
+    }
+
+    @Override
+    @Transactional
+    public void cambiarEstado(Long iduser,Long id) {
+                try {
+            repositorio.cambiarEstado(iduser,id);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    @Transactional
+    public void eliminadologico(Long iduser,Long id) {
+        System.out.println(iduser +"xd " + id);
+        try {
+            repositorio.eliminadologico(iduser,id);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
 }

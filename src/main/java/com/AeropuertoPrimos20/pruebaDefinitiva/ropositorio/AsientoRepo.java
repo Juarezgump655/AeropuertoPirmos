@@ -20,9 +20,11 @@ public interface AsientoRepo extends CrudRepository<Asiento, Long> {
 
 
     @Query(value = "UPDATE public.asiento\n" +
-            "\tSET id_estado=1\n" +
-            "\tWHERE id_asiento=:id", nativeQuery = true)
-     void reservarAsientos(@Param("id")  Long id);
+            "            SET id_estado=1 ,usuariomodifico=:iduser\n" +
+            "            WHERE id_asiento=:id  ", nativeQuery = true)
+     void reservarAsientos(@Param("iduser")  Long iduser,@Param("id")  Long id);
+
+
 
 
 

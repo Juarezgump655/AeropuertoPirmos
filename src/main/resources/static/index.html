@@ -1,1 +1,55 @@
 hola mundo
+
+    <ng-container matColumnDef="A">
+        <th mat-header-cell *matHeaderCellDef> A </th>
+        <td mat-cell *matCellDef="let element">
+            <button class="asientos" (click)="element[0].id_estado == 2 ?  seleccionar(element[0].id_asiento):null"
+                mat-raised-button [ngStyle]="{ 'background-color': value }" color="{{element[0].id_estado == 2 ? '' : 'warn'}}"
+                *ngIf="element[0]">{{element[0].asiento}}</button>
+        </td> 
+    </ng-container>
+
+    <ng-container matColumnDef="B">
+        <th mat-header-cell *matHeaderCellDef> B </th>
+        <td mat-cell *matCellDef="let element">
+            <button  class="asientos"  [ngStyle]="{ 'background-color': value }"  (click)="element[1].id_estado == 2 ? seleccionar(element[1].id_asiento):null"
+                mat-raised-button color="{{element[1].id_estado == 2 ? '' : 'warn'}}"
+                *ngIf="element[1]">{{element[1].asiento}}</button>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="C">
+        <th mat-header-cell *matHeaderCellDef> C </th>
+        <td mat-cell *matCellDef="let element">
+            <button class="asientos" [ngStyle]="{ 'background-color': value }" (click)="element[2].id_estado == 2 ? seleccionar(element[2].id_asiento):null"
+                mat-raised-button color="{{element[2].id_estado == 2 ? '' : 'warn'}}"
+                *ngIf="element[2]">{{element[2].asiento}}</button>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="D">
+        <th mat-header-cell *matHeaderCellDef> D </th>
+        <td mat-cell *matCellDef="let element">
+            <button class="asientos" [ngStyle]="{ 'background-color': value }" (click)=" element[3].id_estado == 2 ?  seleccionar(element[3].id_asiento):null"
+                mat-raised-button color="{{element[3].id_estado == 2 ? '' : 'warn'}}"
+                *ngIf="element[3]">{{element[3].asiento}}</button>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="E" *ngIf="tamanio">
+        <th mat-header-cell *matHeaderCellDef> E </th>
+        <td mat-cell *matCellDef="let element">
+            <button class="asientos" [ngStyle]="{ 'background-color': value }" (click)=" element[4].id_estado == 2 ? seleccionar(element[4].id_asiento):null"
+                mat-raised-button color="{{element[4].id_estado == 2 ? '' : 'warn'}}"
+                *ngIf="element[4]">{{element[4].asiento}}</button>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="F" *ngIf="tamanio">
+        <th mat-header-cell *matHeaderCellDef> F </th>
+        <td mat-cell *matCellDef="let element">
+            <button class="asientos"  [ngStyle]="{ 'background-color': value }" (click)=" element[5].id_estado == 2 ? seleccionar(element[5].id_asiento):null"
+                mat-raised-button color="{{element[5].id_estado == 2 ? '' : 'warn'}}"
+                *ngIf="element[5]">{{element[5].asiento}}</button>
+        </td>
+    </ng-container>

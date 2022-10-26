@@ -41,12 +41,12 @@ public class Vuelos {
 
     @Column(name = "fechasalida", updatable = false, nullable = false)
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar fechasalida;
 
     @Column(name = "fechallegada", nullable = false)
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar fechallegada;
 
 

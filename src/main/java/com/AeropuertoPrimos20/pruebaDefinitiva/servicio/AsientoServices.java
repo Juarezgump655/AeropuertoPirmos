@@ -16,5 +16,5 @@ public interface AsientoServices {
     public void saveAll(List<Asiento> listaasiento);
      public List<AsientosProjection> findAllLibres(Long id);
 
-     public void reservarAsientos(Long id);
+     public void reservarAsientos(Long iduser,Long id);
 }

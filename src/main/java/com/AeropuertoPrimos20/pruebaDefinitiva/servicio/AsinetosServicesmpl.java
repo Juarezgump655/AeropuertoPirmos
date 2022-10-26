@@ -32,9 +32,9 @@ public class AsinetosServicesmpl  implements  AsientoServices{
     }
 
     @Override
-    public void reservarAsientos(Long id) {
+    public void reservarAsientos(Long iduser, Long id) {
         try {
-            repositorio.reservarAsientos(id);
+            repositorio.reservarAsientos(iduser, id);
         }catch (Exception e){
             System.out.println(e);
         }

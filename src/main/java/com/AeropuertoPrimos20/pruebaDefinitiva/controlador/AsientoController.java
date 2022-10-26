@@ -35,8 +35,6 @@ public class AsientoController {
 
 
 
-
-
     @PostMapping("/Asiento/{asientos}/{id}")
     public void crearAsientos(@PathVariable Long asientos,@PathVariable Long id) throws ParseException {
         List <Asiento> asientoList = new ArrayList<>();
@@ -49,10 +47,12 @@ public class AsientoController {
 
     }
 
-    @GetMapping("/Asiento/reservar/{id}")
-    public void reservarAsiento(@PathVariable Long id){
-        System.out.println("se reservo el asiento: " + id);
-       asientoServices.reservarAsientos(id);
+    @GetMapping("/Asiento/reservar/{iduser}/{id}")
+    public void reservarAsiento(@PathVariable Long iduser,@PathVariable Long id){
+            Asiento asiento = asientoServices.findById(id);
+            System.out.println("se reservo el asiento: " + id+ "se reservo el usuario: " + iduser);
+            asientoServices.reservarAsientos(iduser,id);
+
     }
 
 

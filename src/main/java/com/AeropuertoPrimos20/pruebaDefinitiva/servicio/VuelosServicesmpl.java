@@ -1,7 +1,8 @@
 package com.AeropuertoPrimos20.pruebaDefinitiva.servicio;
 
-import com.AeropuertoPrimos20.pruebaDefinitiva.excepciones.ResourceNotFoundException;
 import com.AeropuertoPrimos20.pruebaDefinitiva.modelo.Vuelos;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.PsajerrosProjection;
+import com.AeropuertoPrimos20.pruebaDefinitiva.projection.VuelotableProjection;
 import com.AeropuertoPrimos20.pruebaDefinitiva.ropositorio.VueloRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Service
 public class VuelosServicesmpl implements  VueloServices {
+
 
     @Autowired
     private VueloRepo repositorio;
@@ -28,10 +30,29 @@ public class VuelosServicesmpl implements  VueloServices {
         return vuelos;
     }
 
+
     @Override
     @Transactional(readOnly = true)
-    public Vuelos findById(Long id) {
-        return repositorio.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("No existe el Vuelo con el ID: "+ id));
+    public List<VuelotableProjection> traertabla(String fecha, Long id) {
+        return repositorio.traertabla(fecha, id);
     }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public VuelotableProjection findById(Long id) {
+        return repositorio.findByID(id);
+    }
+
+    @Override
+    public List<VuelotableProjection> buscartodos() {
+        return repositorio.buscartodos();
+    }
+
+    @Override
+    public List<PsajerrosProjection> traerPasajeros(Long id) {
+        return(List<PsajerrosProjection>) repositorio.traerlista(id);
+    }
+
+
 }

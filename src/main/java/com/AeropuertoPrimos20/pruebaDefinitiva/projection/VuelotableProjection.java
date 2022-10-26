@@ -2,18 +2,22 @@ package com.AeropuertoPrimos20.pruebaDefinitiva.projection;
 
 public interface VuelotableProjection {
 
-    String getNombreaerolinea();
+    String getIdvuelo();
 
-    String getDireccion();
+    String getIdavion();
+    String getSalida();
 
+    String getDestino();
 
-    String getFechasalida();
-
+    String getFechaSalida();
     String getHorasalida();
 
     String getHorallegada();
 
     String getFechallegada();
 
+    String getPrecioeconomico();
+
+    String getPrecioejecutivo();
 
 }
